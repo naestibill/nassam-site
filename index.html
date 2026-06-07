@@ -773,21 +773,75 @@
     box-shadow: 0 16px 48px rgba(0,0,0,.10);
   }
 
-  /* 16:9 responsive embed */
+  /* 16:9 thumbnail with play button */
   .video-embed {
     position: relative;
     width: 100%;
     padding-bottom: 56.25%;
     background: #0f0f0e;
+    overflow: hidden;
+    display: block;
+    text-decoration: none;
   }
 
-  .video-embed iframe {
+  .video-embed img {
     position: absolute;
     inset: 0;
     width: 100%;
     height: 100%;
-    border: none;
+    object-fit: cover;
     display: block;
+    transition: transform .5s ease, filter .3s;
+    filter: brightness(.88);
+  }
+
+  .video-embed:hover img {
+    transform: scale(1.03);
+    filter: brightness(.7);
+  }
+
+  /* Play button */
+  .video-play {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    pointer-events: none;
+  }
+
+  .video-play-btn {
+    width: 64px;
+    height: 64px;
+    background: rgba(255,255,255,.92);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform .2s, background .2s;
+    box-shadow: 0 4px 24px rgba(0,0,0,.3);
+  }
+
+  .video-embed:hover .video-play-btn {
+    transform: scale(1.1);
+    background: #fff;
+  }
+
+  .video-play-btn svg {
+    width: 22px;
+    height: 22px;
+    fill: #0f0f0e;
+    margin-left: 3px; /* optical centre for triangle */
+  }
+
+  .video-card-featured .video-play-btn {
+    width: 80px;
+    height: 80px;
+  }
+
+  .video-card-featured .video-play-btn svg {
+    width: 28px;
+    height: 28px;
   }
 
   .video-meta {
@@ -1428,12 +1482,14 @@
 
       <!-- Featured: Video 1 -->
       <div class="video-card video-card-featured r">
-        <div class="video-embed">
-          <iframe src="https://www.youtube.com/embed/dyLEa-EHD3Y"
-            title="Nassam Estibill – Interview"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-            allowfullscreen loading="lazy"></iframe>
-        </div>
+        <a class="video-embed" href="https://www.youtube.com/watch?v=dyLEa-EHD3Y" target="_blank" rel="noopener">
+          <img src="https://img.youtube.com/vi/dyLEa-EHD3Y/maxresdefault.jpg" alt="Interview – Nassam Estibill" />
+          <div class="video-play">
+            <div class="video-play-btn">
+              <svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg>
+            </div>
+          </div>
+        </a>
         <div class="video-meta">
           <span class="video-num">01</span>
           <div class="video-info">
@@ -1445,12 +1501,14 @@
 
       <!-- Video 2 -->
       <div class="video-card r">
-        <div class="video-embed">
-          <iframe src="https://www.youtube.com/embed/tdiDuydbfYI?start=912"
-            title="Nassam Estibill – Panel"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-            allowfullscreen loading="lazy"></iframe>
-        </div>
+        <a class="video-embed" href="https://www.youtube.com/live/tdiDuydbfYI?t=912" target="_blank" rel="noopener">
+          <img src="https://img.youtube.com/vi/tdiDuydbfYI/maxresdefault.jpg" alt="Panel – Nassam Estibill" />
+          <div class="video-play">
+            <div class="video-play-btn">
+              <svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg>
+            </div>
+          </div>
+        </a>
         <div class="video-meta">
           <span class="video-num">02</span>
           <div class="video-info">
@@ -1462,12 +1520,14 @@
 
       <!-- Video 3 -->
       <div class="video-card r">
-        <div class="video-embed">
-          <iframe src="https://www.youtube.com/embed/u97tajGKiAo"
-            title="Nassam Estibill – Presentation"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-            allowfullscreen loading="lazy"></iframe>
-        </div>
+        <a class="video-embed" href="https://www.youtube.com/watch?v=u97tajGKiAo" target="_blank" rel="noopener">
+          <img src="https://img.youtube.com/vi/u97tajGKiAo/maxresdefault.jpg" alt="Presentation – Nassam Estibill" />
+          <div class="video-play">
+            <div class="video-play-btn">
+              <svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg>
+            </div>
+          </div>
+        </a>
         <div class="video-meta">
           <span class="video-num">03</span>
           <div class="video-info">

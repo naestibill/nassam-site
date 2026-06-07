@@ -747,6 +747,87 @@
 
   @keyframes roll { to { transform: translateX(-50%); } }
 
+  /* ── VIDEO ── */
+  #video .video-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto auto;
+    gap: var(--gap);
+  }
+
+  /* First video spans full width */
+  .video-card-featured {
+    grid-column: 1 / -1;
+  }
+
+  .video-card {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: var(--r);
+    overflow: hidden;
+    transition: transform .25s, box-shadow .25s;
+  }
+
+  .video-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 16px 48px rgba(0,0,0,.10);
+  }
+
+  /* 16:9 responsive embed */
+  .video-embed {
+    position: relative;
+    width: 100%;
+    padding-bottom: 56.25%;
+    background: #0f0f0e;
+  }
+
+  .video-embed iframe {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    border: none;
+    display: block;
+  }
+
+  .video-meta {
+    padding: 18px 22px 20px;
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+  }
+
+  .video-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.8rem;
+    font-weight: 300;
+    color: var(--border);
+    line-height: 1;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+
+  .video-info { flex: 1; }
+
+  .video-tag {
+    font-size: .6rem;
+    font-weight: 600;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 5px;
+  }
+
+  .video-title {
+    font-size: .92rem;
+    font-weight: 400;
+    color: var(--ink);
+    line-height: 1.4;
+  }
+
+  .video-card-featured .video-meta { padding: 20px 28px 24px; }
+  .video-card-featured .video-title { font-size: 1.05rem; }
+
   /* ── WRITING ── */
   #writing .writing-list {
     background: var(--white);
@@ -978,9 +1059,10 @@
     /* Stats */
     .stats { grid-template-columns: repeat(2, 1fr); }
 
-    /* Expertise + Press: single column */
+    /* Expertise + Press + Video: single column */
     #expertise .card-grid { grid-template-columns: 1fr; }
     #press .press-grid { grid-template-columns: 1fr; }
+    #video .video-grid { grid-template-columns: 1fr; }
 
     /* Section spacing */
     section { padding-top: 56px !important; padding-bottom: 56px !important; }
@@ -1010,6 +1092,7 @@
     <li><a href="#about">About</a></li>
     <li><a href="#experience">Experience</a></li>
     <li><a href="#press">Press</a></li>
+    <li><a href="#video">Video</a></li>
     <li><a href="#writing">Writing</a></li>
     <li><a href="mailto:nassam.estibill@gmail.com" class="nav-cta">Get in touch</a></li>
   </ul>
@@ -1327,6 +1410,72 @@
           </div>
         </div>
       </a>
+
+    </div>
+  </div>
+</section>
+
+<!-- ── VIDEO ── -->
+<section id="video">
+  <div class="wrap">
+    <div class="section-header r">
+      <div>
+        <div class="section-label">Video</div>
+        <h2 class="section-h">Talks &amp;<br><em>interviews.</em></h2>
+      </div>
+    </div>
+    <div class="video-grid">
+
+      <!-- Featured: Video 1 -->
+      <div class="video-card video-card-featured r">
+        <div class="video-embed">
+          <iframe src="https://www.youtube.com/embed/dyLEa-EHD3Y"
+            title="Nassam Estibill – Interview"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen loading="lazy"></iframe>
+        </div>
+        <div class="video-meta">
+          <span class="video-num">01</span>
+          <div class="video-info">
+            <div class="video-tag">Interview · Featured</div>
+            <div class="video-title">Metals &amp; Mining strategy, investment outlook, and the energy transition</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Video 2 -->
+      <div class="video-card r">
+        <div class="video-embed">
+          <iframe src="https://www.youtube.com/embed/tdiDuydbfYI?start=912"
+            title="Nassam Estibill – Panel"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen loading="lazy"></iframe>
+        </div>
+        <div class="video-meta">
+          <span class="video-num">02</span>
+          <div class="video-info">
+            <div class="video-tag">Panel · Live</div>
+            <div class="video-title">Mining &amp; critical minerals — live panel discussion</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Video 3 -->
+      <div class="video-card r">
+        <div class="video-embed">
+          <iframe src="https://www.youtube.com/embed/u97tajGKiAo"
+            title="Nassam Estibill – Presentation"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen loading="lazy"></iframe>
+        </div>
+        <div class="video-meta">
+          <span class="video-num">03</span>
+          <div class="video-info">
+            <div class="video-tag">Presentation</div>
+            <div class="video-title">Copper, lithium &amp; the Americas — market outlook</div>
+          </div>
+        </div>
+      </div>
 
     </div>
   </div>

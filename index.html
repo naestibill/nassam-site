@@ -1133,6 +1133,30 @@
     .press-card { aspect-ratio: 3 / 2; }
   }
 
+  /* ── LANGUAGE TOGGLE ── */
+  .lang-toggle {
+    display: flex;
+    align-items: center;
+    gap: 3px;
+    background: none;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 5px 10px;
+    cursor: pointer;
+    font-family: 'Inter', sans-serif;
+    font-size: .7rem;
+    font-weight: 500;
+    letter-spacing: .06em;
+    color: var(--mid);
+    transition: border-color .18s, background .18s;
+    flex-shrink: 0;
+    margin-left: 8px;
+  }
+  .lang-toggle:hover { background: var(--page); border-color: var(--muted); }
+  .lang-sep { color: var(--border); }
+  .lang-opt { transition: color .18s; }
+  .lang-opt.active { color: var(--ink); font-weight: 600; }
+
   </style>
 </head>
 <body>
@@ -1141,13 +1165,18 @@
 <nav class="nav">
   <a class="nav-logo" href="#hero">Nassam Estibill</a>
   <ul class="nav-links">
-    <li><a href="#about">About</a></li>
-    <li><a href="#experience">Experience</a></li>
-    <li><a href="#press">Press</a></li>
-    <li><a href="#video">Video</a></li>
-    <li><a href="#writing">Writing</a></li>
-    <li><a href="mailto:naestibill@gmail.com" class="nav-cta">Get in touch</a></li>
+    <li><a href="#about"     data-i18n="nav.about">About</a></li>
+    <li><a href="#experience"data-i18n="nav.experience">Experience</a></li>
+    <li><a href="#press"     data-i18n="nav.press">Press</a></li>
+    <li><a href="#video"     data-i18n="nav.video">Video</a></li>
+    <li><a href="#writing"   data-i18n="nav.writing">Writing</a></li>
+    <li><a href="mailto:naestibill@gmail.com" class="nav-cta" data-i18n="nav.cta">Get in touch</a></li>
   </ul>
+  <button class="lang-toggle" id="langToggle" aria-label="Switch language">
+    <span class="lang-opt" id="langEN">EN</span>
+    <span class="lang-sep">/</span>
+    <span class="lang-opt" id="langES">ES</span>
+  </button>
 </nav>
 
 <!-- ── HERO ── -->
@@ -1164,12 +1193,12 @@
       <h1 class="hero-h1">
         Nassam Estibill<br>Zalaquett
       </h1>
-      <p class="hero-subtitle">Metals &amp; Mining — Consultant &amp; Strategist</p>
-      <a href="mailto:naestibill@gmail.com" class="hero-cta">Get in touch →</a>
+      <p class="hero-subtitle" data-i18n="hero.subtitle">Metals &amp; Mining — Consultant &amp; Strategist</p>
+      <a href="mailto:naestibill@gmail.com" class="hero-cta" data-i18n="hero.cta">Get in touch →</a>
       <div class="hero-meta">
-        <span class="hero-pill"><span class="hero-pill-dot"></span>Copper · Lithium</span>
-        <span class="hero-pill">Americas</span>
-        <span class="hero-pill">Wood Mackenzie · New York</span>
+        <span class="hero-pill"><span class="hero-pill-dot"></span><span data-i18n="hero.pill1">Copper · Lithium</span></span>
+        <span class="hero-pill" data-i18n="hero.pill2">Americas</span>
+        <span class="hero-pill" data-i18n="hero.pill3">Wood Mackenzie · New York</span>
       </div>
     </div>
     <!-- Portrait — full height, blends via gradient mask -->
@@ -1183,19 +1212,19 @@
 <div class="stats">
   <div class="stat-card r">
     <div class="stat-num">9+</div>
-    <div class="stat-label">Years across mining, metals &amp; strategy</div>
+    <div class="stat-label" data-i18n="stats.years">Years across mining, metals &amp; strategy</div>
   </div>
   <div class="stat-card r">
     <div class="stat-num">50+</div>
-    <div class="stat-label">Consulting and advisory engagements</div>
+    <div class="stat-label" data-i18n="stats.engagements">Consulting and advisory engagements</div>
   </div>
   <div class="stat-card r">
     <div class="stat-num">10+</div>
-    <div class="stat-label">Commodities analyzed</div>
+    <div class="stat-label" data-i18n="stats.commodities">Commodities analyzed</div>
   </div>
   <div class="stat-card r">
-    <div class="stat-num">Bilingual</div>
-    <div class="stat-label">English &amp; Spanish</div>
+    <div class="stat-num" data-i18n="stats.bilingualNum">Bilingual</div>
+    <div class="stat-label" data-i18n="stats.bilingualLabel">English &amp; Spanish</div>
   </div>
 </div>
 
@@ -1204,21 +1233,21 @@
   <div class="wrap">
     <div class="section-header r">
       <div>
-        <div class="section-label">About</div>
-        <h2 class="section-h">Mining strategist.<br><em>Market analyst. Trusted advisor.</em></h2>
+        <div class="section-label" data-i18n="about.label">About</div>
+        <h2 class="section-h" data-i18n="about.heading">Mining strategist.<br><em>Market analyst. Trusted advisor.</em></h2>
       </div>
     </div>
     <div class="about-grid">
       <div class="about-card r">
         <div class="about-body">
-          <p>I am a strategist and consultant with nearly a decade of experience advising mining companies, institutional investors, and governments across the full spectrum of metals and critical minerals — with a core focus on copper and lithium, and deep coverage across base metals, battery materials, gold, rare earths, and the broader energy transition commodities.</p>
-          <p>As Director of Metals &amp; Mining for the Americas at Wood Mackenzie, I lead commercial growth, complex client engagements, and thought leadership across North and Latin America. My work spans investment decisions, market intelligence, and strategic positioning for the companies and capitals shaping the next economy.</p>
-          <p>Chilean-born, New York-based. Fluent in English and Spanish. Regularly quoted in major Latin American business press on commodity markets and mining strategy.</p>
+          <p data-i18n="about.p1">I am a strategist and consultant with nearly a decade of experience advising mining companies, institutional investors, and governments across the full spectrum of metals and critical minerals — with a core focus on copper and lithium, and deep coverage across base metals, battery materials, gold, rare earths, and the broader energy transition commodities.</p>
+          <p data-i18n="about.p2">As Director of Metals &amp; Mining for the Americas at Wood Mackenzie, I lead commercial growth, complex client engagements, and thought leadership across North and Latin America. My work spans investment decisions, market intelligence, and strategic positioning for the companies and capitals shaping the next economy.</p>
+          <p data-i18n="about.p3">Chilean-born, New York-based. Fluent in English and Spanish. Regularly quoted in major Latin American business press on commodity markets and mining strategy.</p>
         </div>
       </div>
       <div>
         <div class="pull-card r">
-          <p class="pull-text">"The commodities that power the energy transition are not a trend — they are an inevitability."</p>
+          <p class="pull-text" data-i18n="about.quote">"The commodities that power the energy transition are not a trend — they are an inevitability."</p>
           <span class="pull-attr">Nassam Estibill</span>
         </div>
         <div class="cred-card r">
@@ -1278,8 +1307,8 @@
   <div class="wrap">
     <div class="section-header r">
       <div>
-        <div class="section-label">Focus Areas</div>
-        <h2 class="section-h">Powering decisions<br><em>across the metals value chain.</em></h2>
+        <div class="section-label" data-i18n="expertise.label">Focus Areas</div>
+        <h2 class="section-h" data-i18n="expertise.heading">Powering decisions<br><em>across the metals value chain.</em></h2>
       </div>
     </div>
     <div class="card-grid">
@@ -1289,9 +1318,9 @@
                alt="Open pit copper mine aerial" />
         </div>
         <div class="ec-body">
-          <div class="ec-tag">Copper &amp; Metals</div>
-          <div class="ec-title">Supply forecasting &amp; investment screening</div>
-          <p class="ec-desc">Long-term copper market analysis, supply-demand modeling, and investment thesis development for miners and institutional capital.</p>
+          <div class="ec-tag" data-i18n="exp1.tag">Copper &amp; Metals</div>
+          <div class="ec-title" data-i18n="exp1.title">Supply forecasting &amp; investment screening</div>
+          <p class="ec-desc" data-i18n="exp1.desc">Long-term copper market analysis, supply-demand modeling, and investment thesis development for miners and institutional capital.</p>
         </div>
       </div>
       <div class="expertise-card r">
@@ -1300,9 +1329,9 @@
                alt="Wind turbines energy transition" />
         </div>
         <div class="ec-body">
-          <div class="ec-tag">Energy Transition</div>
-          <div class="ec-title">Critical minerals for a decarbonizing world</div>
-          <p class="ec-desc">Strategic advisory across the full critical minerals spectrum — copper, lithium, gold, rare earths, and beyond — covering every stage from mine to market.</p>
+          <div class="ec-tag" data-i18n="exp2.tag">Energy Transition</div>
+          <div class="ec-title" data-i18n="exp2.title">Critical minerals for a decarbonizing world</div>
+          <p class="ec-desc" data-i18n="exp2.desc">Strategic advisory across the full critical minerals spectrum — copper, lithium, gold, rare earths, and beyond — covering every stage from mine to market.</p>
         </div>
       </div>
       <div class="expertise-card r">
@@ -1311,9 +1340,9 @@
                alt="Mining open pit Americas" />
         </div>
         <div class="ec-body">
-          <div class="ec-tag">Americas Advisory</div>
-          <div class="ec-title">North &amp; Latin America market strategy</div>
-          <p class="ec-desc">Deep regional expertise spanning Chile, Peru, and North America. Advising on policy risk, investment strategy, and commercial growth.</p>
+          <div class="ec-tag" data-i18n="exp3.tag">Americas Advisory</div>
+          <div class="ec-title" data-i18n="exp3.title">North &amp; Latin America market strategy</div>
+          <p class="ec-desc" data-i18n="exp3.desc">Deep regional expertise spanning Chile, Peru, and North America. Advising on policy risk, investment strategy, and commercial growth.</p>
         </div>
       </div>
     </div>
@@ -1325,8 +1354,8 @@
   <div class="wrap">
     <div class="section-header r">
       <div>
-        <div class="section-label">Career</div>
-        <h2 class="section-h">From Santiago<br><em>to New York.</em></h2>
+        <div class="section-label" data-i18n="career.label">Career</div>
+        <h2 class="section-h" data-i18n="career.heading">From Santiago<br><em>to New York.</em></h2>
       </div>
     </div>
     <div class="exp-list r">
@@ -1389,8 +1418,8 @@
   <div class="wrap">
     <div class="section-header r">
       <div>
-        <div class="section-label">Press &amp; Media</div>
-        <h2 class="section-h">The latest<br><em>coverage.</em></h2>
+        <div class="section-label" data-i18n="press.label">Press &amp; Media</div>
+        <h2 class="section-h" data-i18n="press.heading">The latest<br><em>coverage.</em></h2>
       </div>
       <a href="#contact" class="see-more">See more on LinkedIn →</a>
     </div>
@@ -1472,8 +1501,8 @@
   <div class="wrap">
     <div class="section-header r">
       <div>
-        <div class="section-label">Video</div>
-        <h2 class="section-h">Talks &amp;<br><em>interviews.</em></h2>
+        <div class="section-label" data-i18n="video.label">Video</div>
+        <h2 class="section-h" data-i18n="video.heading">Talks &amp;<br><em>interviews.</em></h2>
       </div>
     </div>
     <div class="video-grid">
@@ -1544,8 +1573,8 @@
   <div class="wrap">
     <div class="section-header r">
       <div>
-        <div class="section-label">Writing</div>
-        <h2 class="section-h">Opinion &amp;<br><em>analysis.</em></h2>
+        <div class="section-label" data-i18n="writing.label">Writing</div>
+        <h2 class="section-h" data-i18n="writing.heading">Opinion &amp;<br><em>analysis.</em></h2>
       </div>
     </div>
     <div class="writing-list r">
@@ -1561,9 +1590,9 @@
       <div class="wi-row" style="opacity:.4; pointer-events:none;">
         <span class="wi-num" style="opacity:.3;">—</span>
         <div>
-          <div class="wi-tag">Coming soon</div>
-          <div class="wi-title">Opinion columns on copper, lithium &amp; critical minerals</div>
-          <div class="wi-sub">Follow on LinkedIn for the latest analysis</div>
+          <div class="wi-tag" data-i18n="writing.soon">Coming soon</div>
+          <div class="wi-title" data-i18n="writing.soonTitle">Opinion columns on copper, lithium &amp; critical minerals</div>
+          <div class="wi-sub" data-i18n="writing.soonSub">Follow on LinkedIn for the latest analysis</div>
         </div>
       </div>
     </div>
@@ -1575,13 +1604,13 @@
   <div class="wrap">
     <div class="section-header r">
       <div>
-        <div class="section-label">Contact</div>
-        <h2 class="section-h">Let's talk<br><em>metals.</em></h2>
+        <div class="section-label" data-i18n="contact.label">Contact</div>
+        <h2 class="section-h" data-i18n="contact.heading">Let's talk<br><em>metals.</em></h2>
       </div>
     </div>
     <div class="contact-grid">
       <div class="contact-card r">
-        <p class="contact-intro">Open to media inquiries, speaking engagements, and strategic conversations around copper, lithium, and the commodities shaping the next economy.</p>
+        <p class="contact-intro" data-i18n="contact.intro">Open to media inquiries, speaking engagements, and strategic conversations around copper, lithium, and the commodities shaping the next economy.</p>
         <div class="clink-list">
           <a href="mailto:naestibill@gmail.com" class="clink">
             <span class="clink-label">Email</span>
@@ -1604,13 +1633,13 @@
         </div>
       </div>
       <div class="contact-card r">
-        <p class="topics-label">Open to conversations on</p>
+        <p class="topics-label" data-i18n="contact.topicsLabel">Open to conversations on</p>
         <div class="topic-list">
-          <div class="topic-item"><span class="tdot"></span>Copper &amp; lithium market outlook</div>
-          <div class="topic-item"><span class="tdot"></span>Investment strategy in critical minerals</div>
-          <div class="topic-item"><span class="tdot"></span>Mining strategy for the energy transition</div>
-          <div class="topic-item"><span class="tdot"></span>Media interviews &amp; keynote speaking</div>
-          <div class="topic-item"><span class="tdot"></span>Chile &amp; Latin America mining policy</div>
+          <div class="topic-item"><span class="tdot"></span><span data-i18n="contact.t1">Copper &amp; lithium market outlook</span></div>
+          <div class="topic-item"><span class="tdot"></span><span data-i18n="contact.t2">Investment strategy in critical minerals</span></div>
+          <div class="topic-item"><span class="tdot"></span><span data-i18n="contact.t3">Mining strategy for the energy transition</span></div>
+          <div class="topic-item"><span class="tdot"></span><span data-i18n="contact.t4">Media interviews &amp; keynote speaking</span></div>
+          <div class="topic-item"><span class="tdot"></span><span data-i18n="contact.t5">Chile &amp; Latin America mining policy</span></div>
         </div>
       </div>
     </div>
@@ -1635,6 +1664,143 @@
     });
   }, { threshold: 0.07, rootMargin: '0px 0px -28px 0px' });
   document.querySelectorAll('.r').forEach(el => io.observe(el));
+
+  /* ── Language Toggle ── */
+  const translations = {
+    en: {
+      'nav.about':       'About',
+      'nav.experience':  'Experience',
+      'nav.press':       'Press',
+      'nav.video':       'Video',
+      'nav.writing':     'Writing',
+      'nav.cta':         'Get in touch',
+      'hero.subtitle':   'Metals & Mining — Consultant & Strategist',
+      'hero.cta':        'Get in touch →',
+      'hero.pill1':      'Copper · Lithium',
+      'hero.pill2':      'Americas',
+      'hero.pill3':      'Wood Mackenzie · New York',
+      'stats.years':     'Years across mining, metals & strategy',
+      'stats.engagements':'Consulting and advisory engagements',
+      'stats.commodities':'Commodities analyzed',
+      'stats.bilingualNum':'Bilingual',
+      'stats.bilingualLabel':'English & Spanish',
+      'about.label':     'About',
+      'about.heading':   'Mining strategist.<br><em>Market analyst. Trusted advisor.</em>',
+      'about.p1':        'I am a strategist and consultant with nearly a decade of experience advising mining companies, institutional investors, and governments across the full spectrum of metals and critical minerals — with a core focus on copper and lithium, and deep coverage across base metals, battery materials, gold, rare earths, and the broader energy transition commodities.',
+      'about.p2':        'As Director of Metals &amp; Mining for the Americas at Wood Mackenzie, I lead commercial growth, complex client engagements, and thought leadership across North and Latin America. My work spans investment decisions, market intelligence, and strategic positioning for the companies and capitals shaping the next economy.',
+      'about.p3':        'Chilean-born, New York-based. Fluent in English and Spanish. Regularly quoted in major Latin American business press on commodity markets and mining strategy.',
+      'about.quote':     '"The commodities that power the energy transition are not a trend — they are an inevitability."',
+      'expertise.label': 'Focus Areas',
+      'expertise.heading':'Powering decisions<br><em>across the metals value chain.</em>',
+      'exp1.tag':        'Copper & Metals',
+      'exp1.title':      'Supply forecasting & investment screening',
+      'exp1.desc':       'Long-term copper market analysis, supply-demand modeling, and investment thesis development for miners and institutional capital.',
+      'exp2.tag':        'Energy Transition',
+      'exp2.title':      'Critical minerals for a decarbonizing world',
+      'exp2.desc':       'Strategic advisory across the full critical minerals spectrum — copper, lithium, gold, rare earths, and beyond — covering every stage from mine to market.',
+      'exp3.tag':        'Americas Advisory',
+      'exp3.title':      'North & Latin America market strategy',
+      'exp3.desc':       'Deep regional expertise spanning Chile, Peru, and North America. Advising on policy risk, investment strategy, and commercial growth.',
+      'career.label':    'Career',
+      'career.heading':  'From Santiago<br><em>to New York.</em>',
+      'press.label':     'Press & Media',
+      'press.heading':   'The latest<br><em>coverage.</em>',
+      'video.label':     'Video',
+      'video.heading':   'Talks &amp;<br><em>interviews.</em>',
+      'writing.label':   'Writing',
+      'writing.heading': 'Opinion &amp;<br><em>analysis.</em>',
+      'writing.soon':    'Coming soon',
+      'writing.soonTitle':'Opinion columns on copper, lithium & critical minerals',
+      'writing.soonSub': 'Follow on LinkedIn for the latest analysis',
+      'contact.label':   'Contact',
+      'contact.heading': 'Let\'s talk<br><em>metals.</em>',
+      'contact.intro':   'Open to media inquiries, speaking engagements, and strategic conversations around copper, lithium, and the commodities shaping the next economy.',
+      'contact.topicsLabel':'Open to conversations on',
+      'contact.t1':      'Copper & lithium market outlook',
+      'contact.t2':      'Investment strategy in critical minerals',
+      'contact.t3':      'Mining strategy for the energy transition',
+      'contact.t4':      'Media interviews & keynote speaking',
+      'contact.t5':      'Chile & Latin America mining policy',
+    },
+    es: {
+      'nav.about':       'Sobre mí',
+      'nav.experience':  'Trayectoria',
+      'nav.press':       'Prensa',
+      'nav.video':       'Video',
+      'nav.writing':     'Artículos',
+      'nav.cta':         'Contacto',
+      'hero.subtitle':   'Metales y Minería — Consultor y Estratega',
+      'hero.cta':        'Escríbeme →',
+      'hero.pill1':      'Cobre · Litio',
+      'hero.pill2':      'Américas',
+      'hero.pill3':      'Wood Mackenzie · Nueva York',
+      'stats.years':     'Años en minería, metales y estrategia',
+      'stats.engagements':'Proyectos de consultoría y asesoría',
+      'stats.commodities':'Materias primas analizadas',
+      'stats.bilingualNum':'Bilingüe',
+      'stats.bilingualLabel':'Español e Inglés',
+      'about.label':     'Sobre mí',
+      'about.heading':   'Estratega minero.<br><em>Analista de mercado. Asesor de confianza.</em>',
+      'about.p1':        'Soy consultor y estratega con casi una década de experiencia asesorando a empresas mineras, inversionistas institucionales y gobiernos en el espectro completo de metales y minerales críticos — con foco central en cobre y litio, y cobertura profunda en metales base, materiales de batería, oro, tierras raras y las materias primas de la transición energética.',
+      'about.p2':        'Como Director de Metales y Minería para las Américas en Wood Mackenzie, lidero el crecimiento comercial, proyectos estratégicos con clientes y el liderazgo de pensamiento en América del Norte y Latina. Mi trabajo abarca decisiones de inversión, inteligencia de mercado y posicionamiento estratégico para las empresas y capitales que están moldeando la próxima economía.',
+      'about.p3':        'Chileno, con base en Nueva York. Fluido en español e inglés. Citado regularmente en la prensa de negocios latinoamericana sobre mercados de materias primas y estrategia minera.',
+      'about.quote':     '"Las materias primas que impulsan la transición energética no son una tendencia — son una inevitabilidad."',
+      'expertise.label': 'Áreas de Especialización',
+      'expertise.heading':'Decisiones estratégicas<br><em>en toda la cadena de valor minera.</em>',
+      'exp1.tag':        'Cobre y Metales',
+      'exp1.title':      'Proyección de oferta y evaluación de inversiones',
+      'exp1.desc':       'Análisis de largo plazo del mercado del cobre, modelamiento de oferta y demanda, y desarrollo de tesis de inversión para mineras y capital institucional.',
+      'exp2.tag':        'Transición Energética',
+      'exp2.title':      'Minerales críticos para un mundo en descarbonización',
+      'exp2.desc':       'Asesoría estratégica en el espectro completo de minerales críticos — cobre, litio, oro, tierras raras y más — cubriendo cada etapa desde la mina hasta el mercado.',
+      'exp3.tag':        'Asesoría en las Américas',
+      'exp3.title':      'Estrategia de mercado en América del Norte y Latina',
+      'exp3.desc':       'Experiencia regional profunda en Chile, Perú y América del Norte. Asesorando en riesgo regulatorio, estrategia de inversión y crecimiento comercial.',
+      'career.label':    'Trayectoria',
+      'career.heading':  'De Santiago<br><em>a Nueva York.</em>',
+      'press.label':     'Prensa y Medios',
+      'press.heading':   'Cobertura<br><em>reciente.</em>',
+      'video.label':     'Video',
+      'video.heading':   'Entrevistas &amp;<br><em>charlas.</em>',
+      'writing.label':   'Artículos',
+      'writing.heading': 'Opinión &amp;<br><em>análisis.</em>',
+      'writing.soon':    'Próximamente',
+      'writing.soonTitle':'Columnas de opinión sobre cobre, litio y minerales críticos',
+      'writing.soonSub': 'Sígueme en LinkedIn para los últimos análisis',
+      'contact.label':   'Contacto',
+      'contact.heading': 'Hablemos<br><em>de metales.</em>',
+      'contact.intro':   'Disponible para consultas de medios, presentaciones y conversaciones estratégicas sobre cobre, litio y las materias primas que están dando forma a la próxima economía.',
+      'contact.topicsLabel':'Abierto a conversaciones sobre',
+      'contact.t1':      'Perspectiva del mercado de cobre y litio',
+      'contact.t2':      'Estrategia de inversión en minerales críticos',
+      'contact.t3':      'Estrategia minera para la transición energética',
+      'contact.t4':      'Entrevistas en medios y conferencias',
+      'contact.t5':      'Política minera en Chile y América Latina',
+    }
+  };
+
+  let currentLang = localStorage.getItem('lang') || 'en';
+
+  function applyLang(lang) {
+    const t = translations[lang];
+    document.querySelectorAll('[data-i18n]').forEach(el => {
+      const key = el.getAttribute('data-i18n');
+      if (t[key] !== undefined) el.innerHTML = t[key];
+    });
+    // Update toggle visual
+    document.getElementById('langEN').classList.toggle('active', lang === 'en');
+    document.getElementById('langES').classList.toggle('active', lang === 'es');
+    document.documentElement.lang = lang === 'es' ? 'es' : 'en';
+    currentLang = lang;
+    localStorage.setItem('lang', lang);
+  }
+
+  document.getElementById('langToggle').addEventListener('click', () => {
+    applyLang(currentLang === 'en' ? 'es' : 'en');
+  });
+
+  // Apply saved language on load
+  applyLang(currentLang);
 </script>
 
 </body>

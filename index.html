@@ -1060,10 +1060,11 @@
   /* ── RESPONSIVE ── */
 
   /* Tablet (≤960px) */
+  /* ── Tablet (≤960px) ── */
   @media (max-width: 960px) {
     :root { --gutter: 32px; --gap: 16px; }
 
-    /* Nav */
+    /* Nav: hide middle links, keep CTA */
     .nav-links li:not(:last-child) { display: none; }
 
     /* Hero */
@@ -1071,68 +1072,78 @@
     .hero-photo-wrap { width: 55%; right: -4%; opacity: .7; }
     .hero-h1 { font-size: clamp(3rem, 8vw, 5rem); }
 
-    /* Content sections */
+    /* Grids → single or 2-col */
     .stats { grid-template-columns: repeat(2, 1fr); }
     #about .about-grid { grid-template-columns: 1fr; }
     #expertise .card-grid { grid-template-columns: 1fr 1fr; }
-    #press .press-grid { grid-template-columns: 1fr; }
-    .press-logos { gap: 20px; padding: 20px 24px; }
-    .press-card { aspect-ratio: 4 / 3; }
+    #press .press-grid { grid-template-columns: 1fr 1fr; }
+    .press-card { aspect-ratio: 3 / 4; }
+    #video .video-grid { grid-template-columns: 1fr; }
+    .video-card-featured { grid-column: 1; }
     .exp-item { grid-template-columns: 1fr; }
     .ei-left { border-right: none; border-bottom: 1px solid var(--border); padding-bottom: 12px; }
     #contact .contact-grid { grid-template-columns: 1fr; }
   }
 
-  /* Mobile (≤640px) */
+  /* ── Mobile (≤640px) ── */
   @media (max-width: 640px) {
-    :root { --gutter: 20px; --gap: 14px; }
+    :root { --gutter: 18px; --gap: 12px; }
 
-    /* Nav: show only CTA */
-    .nav { padding: 0 20px; }
+    /* Nav: logo + CTA only */
+    .nav { padding: 0 18px; }
     .nav-links li { display: none; }
     .nav-links li:last-child { display: flex; }
 
-    /* Hero: stack text, hide portrait */
-    #hero {
-      height: 100svh;
-      max-height: 780px;
-      border-radius: 0;
-    }
-    .hero-photo-wrap {
-      display: none;
-    }
-    .hero-content {
-      align-items: flex-end;
-      padding-bottom: 56px;
-    }
+    /* Hero */
+    #hero { height: 100svh; max-height: 780px; border-radius: 0; }
+    .hero-photo-wrap { display: none; }
+    .hero-content { align-items: flex-end; padding-bottom: 52px; }
     .hero-left { max-width: 100%; }
-    .hero-h1 { font-size: clamp(2.8rem, 11vw, 4.2rem); }
-    .hero-subtitle { margin-top: 14px; margin-bottom: 28px; letter-spacing: .1em; }
+    .hero-h1 { font-size: clamp(2.6rem, 11vw, 4rem); }
+    .hero-subtitle { margin-top: 12px; margin-bottom: 24px; letter-spacing: .09em; }
     .hero-meta { flex-wrap: wrap; gap: 8px; }
 
-    /* Stats */
+    /* Stats: 2×2 */
     .stats { grid-template-columns: repeat(2, 1fr); }
 
-    /* Expertise + Press + Video: single column */
-    #expertise .card-grid { grid-template-columns: 1fr; }
-    #press .press-grid { grid-template-columns: 1fr; }
-    #video .video-grid { grid-template-columns: 1fr; }
-
     /* Section spacing */
-    section { padding-top: 56px !important; padding-bottom: 56px !important; }
+    section { padding-top: 52px !important; padding-bottom: 52px !important; }
+
+    /* Press: single col, shorter aspect */
+    #press .press-grid { grid-template-columns: 1fr; }
+    .press-card { aspect-ratio: 4 / 3; }
+    .press-logos { gap: 16px; padding: 16px 20px; flex-wrap: wrap; }
+    .press-logos-label { border-right: none; padding-right: 0; width: 100%; }
+    .pc-title { font-size: .95rem; }
+
+    /* Expertise: single col */
+    #expertise .card-grid { grid-template-columns: 1fr; }
+
+    /* Video: single col, all same size */
+    #video .video-grid { grid-template-columns: 1fr; }
+    .video-card-featured { grid-column: 1; }
+    .video-play-btn { width: 56px !important; height: 56px !important; }
+    .video-play-btn svg { width: 20px !important; height: 20px !important; }
+    .video-meta { padding: 14px 16px 16px; gap: 10px; }
+    .video-num { font-size: 1.4rem; }
+    .video-title { font-size: .88rem; }
 
     /* Writing list */
     .wl-item { flex-direction: column; gap: 6px; }
     .wl-date { min-width: auto; }
 
-    /* Marquee slower on mobile */
+    /* Marquee */
     .marquee-inner { animation-duration: 30s; }
+
+    /* Section headers */
+    .section-h { font-size: clamp(2rem, 9vw, 3rem); }
   }
 
-  /* Very small phones (≤380px) */
-  @media (max-width: 380px) {
-    .hero-h1 { font-size: 2.6rem; }
-    .stats { grid-template-columns: 1fr 1fr; font-size: .85rem; }
+  /* ── Small phones (≤390px) ── */
+  @media (max-width: 390px) {
+    .hero-h1 { font-size: 2.4rem; }
+    .stats .stat-num { font-size: 1.6rem; }
+    .press-card { aspect-ratio: 3 / 2; }
   }
 
   </style>

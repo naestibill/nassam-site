@@ -1,0 +1,1349 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Nassam Estibill — Metals & Mining Strategist</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&display=swap" rel="stylesheet" />
+  <style>
+
+  /* ── TOKENS ── */
+  :root {
+    --page:     #F7F6F3;
+    --white:    #FFFFFF;
+    --ink:      #111110;
+    --mid:      #4A4845;
+    --muted:    #9C9891;
+    --border:   #E4E1DC;
+    --dark:     #0F0F0E;
+    --accent:   #1B4F6E;
+    --accent-h: #2566891a;   /* accent at 10% for hover bg */
+    --r:        12px;        /* card border radius */
+    --max:      1200px;
+    --gap:      24px;
+    --gutter:   60px;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--page);
+    color: var(--ink);
+    font-family: 'Inter', sans-serif;
+    font-size: 16px;
+    line-height: 1.6;
+    font-weight: 400;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+
+  /* ── NAV ── */
+  .nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 300;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 var(--gutter);
+    background: rgba(247,246,243,0.88);
+    backdrop-filter: blur(16px);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .nav-logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1rem;
+    font-weight: 400;
+    letter-spacing: .05em;
+    color: var(--ink);
+    text-decoration: none;
+  }
+
+  .nav-links {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    list-style: none;
+  }
+
+  .nav-links a {
+    font-size: .75rem;
+    font-weight: 500;
+    letter-spacing: .04em;
+    text-decoration: none;
+    color: var(--mid);
+    padding: 7px 14px;
+    border-radius: 999px;
+    transition: background .18s, color .18s;
+  }
+
+  .nav-links a:hover { background: var(--border); color: var(--ink); }
+
+  .nav-cta {
+    background: var(--ink) !important;
+    color: #fff !important;
+    font-weight: 500 !important;
+  }
+
+  .nav-cta:hover { background: #333 !important; }
+
+  /* ── HERO ── */
+  #hero {
+    margin-top: 60px;
+    position: relative;
+    width: 100%;
+    height: calc(100vh - 60px);
+    min-height: 580px;
+    max-height: 920px;
+    overflow: hidden;
+    border-radius: 0 0 20px 20px;
+  }
+
+  .hero-img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 50%;
+    filter: brightness(.82) saturate(.9);
+  }
+
+  /* dark gradient — heavier left so text is legible, lighter right so photo shows */
+  .hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      100deg,
+      rgba(10,10,9,.65) 0%,
+      rgba(10,10,9,.28) 50%,
+      rgba(10,10,9,.08) 100%
+    );
+  }
+
+  .hero-content {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    max-width: var(--max);
+    margin: 0 auto;
+    left: 0; right: 0;
+    padding: 0 var(--gutter);
+  }
+
+  /* LEFT: text — sits in front of the blended photo */
+  .hero-left {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    max-width: 520px;
+    position: relative;
+    z-index: 2;
+  }
+
+  .hero-eyebrow {
+    font-size: .7rem;
+    font-weight: 500;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,.5);
+    margin-bottom: 20px;
+  }
+
+  .hero-h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(3.2rem, 6vw, 6.8rem);
+    font-weight: 300;
+    line-height: .95;
+    letter-spacing: -.025em;
+    color: #fff;
+    margin-bottom: 0;
+  }
+
+  .hero-h1 em {
+    font-style: italic;
+    color: rgba(255,255,255,.38);
+    display: block;
+  }
+
+  .hero-subtitle {
+    font-size: clamp(.9rem, 1.5vw, 1.15rem);
+    font-weight: 400;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,.82);
+    margin-top: 22px;
+    margin-bottom: 36px;
+  }
+
+  .hero-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: #fff;
+    color: var(--ink);
+    font-size: .8rem;
+    font-weight: 600;
+    letter-spacing: .04em;
+    padding: 14px 28px;
+    border-radius: 999px;
+    text-decoration: none;
+    align-self: flex-start;
+    transition: background .2s, transform .2s;
+    margin-bottom: 40px;
+  }
+
+  .hero-cta:hover { background: #e8e5e0; transform: translateY(-1px); }
+
+  .hero-meta {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+
+  .hero-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    padding: 6px 14px;
+    background: rgba(255,255,255,.08);
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(255,255,255,.12);
+    border-radius: 999px;
+    font-size: .68rem;
+    font-weight: 500;
+    letter-spacing: .05em;
+    color: rgba(255,255,255,.6);
+  }
+
+  .hero-pill-dot {
+    width: 4px; height: 4px;
+    border-radius: 50%;
+    background: #5CD1A0;
+    flex-shrink: 0;
+  }
+
+  /* RIGHT: portrait in a circle with floating card ring */
+  .hero-right {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+  }
+
+  .hero-photo-wrap {
+    position: absolute;
+    top: 0; bottom: 0; right: -2%;
+    width: 46%;
+    pointer-events: none;
+  }
+
+  .hero-photo-wrap::before,
+  .hero-photo-wrap::after { display: none; }
+  .hero-photo-circle { display: none; }
+
+  .hero-photo {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    object-position: right bottom;
+    display: block;
+
+    filter: contrast(1.06) brightness(0.96);
+  }
+
+  /* ── STATS ROW ── */
+  .stats {
+    max-width: var(--max);
+    margin: 32px auto;
+    padding: 0 var(--gutter);
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: var(--gap);
+  }
+
+  .stat-card {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: var(--r);
+    padding: 24px 28px;
+  }
+
+  .stat-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2.5rem;
+    font-weight: 300;
+    color: var(--ink);
+    line-height: 1;
+    margin-bottom: 5px;
+  }
+
+  .stat-label {
+    font-size: .68rem;
+    font-weight: 500;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  /* ── SECTION WRAPPER ── */
+  .wrap {
+    max-width: var(--max);
+    margin: 0 auto;
+    padding: 0 var(--gutter);
+  }
+
+  section { padding: 64px 0; }
+
+  .section-header {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    margin-bottom: 28px;
+  }
+
+  .section-label {
+    font-size: .7rem;
+    font-weight: 600;
+    letter-spacing: .16em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  .section-h {
+    font-size: clamp(1.6rem, 3vw, 2.4rem);
+    font-weight: 300;
+    letter-spacing: -.02em;
+    color: var(--ink);
+    font-family: 'Cormorant Garamond', serif;
+    line-height: 1.1;
+  }
+
+  .section-h em { font-style: italic; color: var(--muted); }
+
+  .see-more {
+    font-size: .8rem;
+    font-weight: 500;
+    color: var(--mid);
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    transition: color .2s;
+    white-space: nowrap;
+  }
+
+  .see-more:hover { color: var(--ink); }
+
+  /* ── ABOUT ── */
+  #about .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 48px;
+    align-items: start;
+  }
+
+  .about-card {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: var(--r);
+    padding: 36px 40px;
+  }
+
+  .about-body p {
+    font-size: .93rem;
+    color: var(--mid);
+    line-height: 1.9;
+    margin-bottom: 14px;
+  }
+
+  .about-body p:last-child { margin-bottom: 0; }
+
+  .pull-card {
+    background: var(--ink);
+    border-radius: var(--r);
+    padding: 36px 40px;
+    margin-bottom: var(--gap);
+  }
+
+  .pull-text {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(1.4rem, 2vw, 1.85rem);
+    font-weight: 300;
+    font-style: italic;
+    color: rgba(255,255,255,.85);
+    line-height: 1.5;
+    margin-bottom: 16px;
+  }
+
+  .pull-attr {
+    font-size: .68rem;
+    font-weight: 500;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,.3);
+  }
+
+  .cred-card {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: var(--r);
+    overflow: hidden;
+  }
+
+  .cred-row {
+    display: grid;
+    grid-template-columns: 56px 1fr;
+    gap: 16px;
+    padding: 18px 24px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .cred-row:last-child { border-bottom: none; }
+
+  .cr-year {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: .95rem;
+    color: var(--muted);
+    padding-top: 2px;
+  }
+
+  .cr-school {
+    font-size: .65rem;
+    font-weight: 600;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 2px;
+  }
+
+  .cr-degree {
+    font-size: .85rem;
+    color: var(--ink);
+    line-height: 1.4;
+  }
+
+  /* ── EXPERTISE CARDS ── */
+  #expertise .card-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--gap);
+  }
+
+  .expertise-card {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: var(--r);
+    overflow: hidden;
+    transition: transform .25s, box-shadow .25s;
+    cursor: default;
+  }
+
+  .expertise-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 40px rgba(0,0,0,.1);
+  }
+
+  .ec-img {
+    width: 100%;
+    height: 200px;
+    overflow: hidden;
+  }
+
+  .ec-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    display: block;
+    transition: transform .5s ease;
+    filter: saturate(.8) brightness(.9);
+  }
+
+  .expertise-card:hover .ec-img img { transform: scale(1.04); }
+
+  .ec-body {
+    padding: 24px 28px;
+  }
+
+  .ec-tag {
+    font-size: .65rem;
+    font-weight: 600;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 10px;
+  }
+
+  .ec-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.35rem;
+    font-weight: 400;
+    color: var(--ink);
+    margin-bottom: 10px;
+    line-height: 1.3;
+  }
+
+  .ec-desc {
+    font-size: .82rem;
+    color: var(--mid);
+    line-height: 1.7;
+  }
+
+  /* ── EXPERIENCE ── */
+  #experience { background: transparent; }
+
+  .exp-list {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: var(--r);
+    overflow: hidden;
+  }
+
+  .exp-item {
+    display: grid;
+    grid-template-columns: 190px 1fr;
+    gap: 0;
+    border-bottom: 1px solid var(--border);
+    transition: background .18s;
+  }
+
+  .exp-item:last-child { border-bottom: none; }
+  .exp-item:hover { background: var(--page); }
+
+  .ei-left {
+    padding: 28px 28px;
+    border-right: 1px solid var(--border);
+  }
+
+  .ei-period {
+    font-size: .72rem;
+    color: var(--muted);
+    margin-bottom: 4px;
+  }
+
+  .ei-co {
+    font-size: .65rem;
+    font-weight: 600;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    color: var(--accent);
+  }
+
+  .ei-right { padding: 28px 36px; }
+
+  .ei-role {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.3rem;
+    font-weight: 400;
+    color: var(--ink);
+    margin-bottom: 8px;
+    letter-spacing: -.01em;
+    line-height: 1.25;
+  }
+
+  .ei-desc {
+    font-size: .82rem;
+    color: var(--mid);
+    line-height: 1.8;
+  }
+
+  /* ── PRESS — card grid ── */
+  #press .press-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--gap);
+  }
+
+  .press-card {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: var(--r);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    transition: transform .25s, box-shadow .25s;
+  }
+
+  .press-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 40px rgba(0,0,0,.08);
+  }
+
+  .pc-img {
+    width: 100%;
+    height: 200px;
+    overflow: hidden;
+    flex-shrink: 0;
+  }
+
+  .pc-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    filter: saturate(.7) brightness(.85);
+    transition: transform .5s, filter .3s;
+  }
+
+  .press-card:hover .pc-img img {
+    transform: scale(1.04);
+    filter: saturate(.85) brightness(.9);
+  }
+
+  .pc-body {
+    padding: 24px 28px;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+  }
+
+  .pc-outlet {
+    font-size: .65rem;
+    font-weight: 600;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 10px;
+  }
+
+  .pc-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.2rem;
+    font-weight: 400;
+    color: var(--ink);
+    line-height: 1.35;
+    flex: 1;
+    margin-bottom: 16px;
+    letter-spacing: -.01em;
+  }
+
+  .pc-excerpt {
+    font-size: .8rem;
+    color: var(--mid);
+    line-height: 1.7;
+    margin-bottom: 20px;
+  }
+
+  .pc-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-top: 1px solid var(--border);
+    padding-top: 16px;
+  }
+
+  .pc-read {
+    font-size: .75rem;
+    font-weight: 500;
+    color: var(--mid);
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    transition: color .18s;
+  }
+
+  .pc-read:hover { color: var(--ink); }
+
+  /* ── MARQUEE ── */
+  .marquee-wrap {
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    overflow: hidden;
+    padding: 13px 0;
+    background: var(--white);
+  }
+
+  .marquee-track {
+    display: flex;
+    white-space: nowrap;
+    animation: roll 32s linear infinite;
+  }
+
+  .m-item {
+    display: inline-flex;
+    align-items: center;
+    gap: 20px;
+    padding: 0 20px;
+    font-size: .62rem;
+    font-weight: 600;
+    letter-spacing: .18em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  .m-dot { width: 3px; height: 3px; border-radius: 50%; background: var(--accent); }
+
+  @keyframes roll { to { transform: translateX(-50%); } }
+
+  /* ── WRITING ── */
+  #writing .writing-list {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: var(--r);
+    overflow: hidden;
+  }
+
+  .wi-row {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    padding: 22px 28px;
+    border-bottom: 1px solid var(--border);
+    text-decoration: none;
+    color: inherit;
+    transition: background .18s;
+  }
+
+  .wi-row:last-child { border-bottom: none; }
+  .wi-row:hover { background: var(--page); }
+
+  .wi-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: .9rem;
+    color: var(--border);
+    flex-shrink: 0;
+    width: 24px;
+  }
+
+  .wi-tag {
+    font-size: .63rem;
+    font-weight: 600;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 3px;
+  }
+
+  .wi-title {
+    font-size: .92rem;
+    font-weight: 400;
+    color: var(--ink);
+    line-height: 1.35;
+  }
+
+  .wi-sub { font-size: .76rem; color: var(--muted); margin-top: 2px; }
+
+  .wi-arrow {
+    margin-left: auto;
+    font-size: .9rem;
+    color: var(--muted);
+    flex-shrink: 0;
+  }
+
+  /* ── CONTACT ── */
+  #contact .contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--gap);
+  }
+
+  .contact-card {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: var(--r);
+    padding: 36px 40px;
+  }
+
+  .contact-intro {
+    font-size: .9rem;
+    color: var(--mid);
+    line-height: 1.85;
+    margin-bottom: 28px;
+  }
+
+  .clink-list { display: flex; flex-direction: column; }
+
+  .clink {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 14px 0;
+    border-top: 1px solid var(--border);
+    text-decoration: none;
+    transition: opacity .18s;
+  }
+
+  .clink:last-child { border-bottom: 1px solid var(--border); }
+  .clink:hover { opacity: .6; }
+
+  .clink-label {
+    font-size: .63rem;
+    font-weight: 600;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    color: var(--accent);
+    min-width: 80px;
+  }
+
+  .clink-val {
+    font-size: .85rem;
+    color: var(--ink);
+    flex: 1;
+  }
+
+  .clink-arrow { font-size: .85rem; color: var(--muted); }
+
+  .topics-label {
+    font-size: .65rem;
+    font-weight: 600;
+    letter-spacing: .16em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 20px;
+  }
+
+  .topic-list { display: flex; flex-direction: column; }
+
+  .topic-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 13px 0;
+    border-top: 1px solid var(--border);
+    font-size: .85rem;
+    color: var(--mid);
+  }
+
+  .topic-item:last-child { border-bottom: 1px solid var(--border); }
+  .tdot { width: 5px; height: 5px; border-radius: 50%; background: var(--accent); flex-shrink: 0; }
+
+  /* ── FOOTER ── */
+  footer {
+    border-top: 1px solid var(--border);
+    padding: 28px var(--gutter);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    flex-wrap: wrap;
+    background: var(--white);
+  }
+
+  .footer-logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: .95rem;
+    color: var(--muted);
+    text-decoration: none;
+  }
+
+  .footer-links { display: flex; gap: 20px; }
+
+  .footer-links a {
+    font-size: .7rem;
+    font-weight: 500;
+    letter-spacing: .08em;
+    color: var(--muted);
+    text-decoration: none;
+    transition: color .18s;
+  }
+
+  .footer-links a:hover { color: var(--ink); }
+
+  .footer-copy { font-size: .68rem; color: var(--border); }
+
+  /* ── REVEAL ── */
+  .r {
+    opacity: 0;
+    transform: translateY(16px);
+    transition: opacity .6s ease, transform .6s ease;
+  }
+
+  .r.in { opacity: 1; transform: none; }
+
+  /* ── RESPONSIVE ── */
+
+  /* Tablet (≤960px) */
+  @media (max-width: 960px) {
+    :root { --gutter: 32px; --gap: 16px; }
+
+    /* Nav */
+    .nav-links li:not(:last-child) { display: none; }
+
+    /* Hero */
+    #hero { height: 88vh; max-height: 700px; }
+    .hero-photo-wrap { width: 55%; right: -4%; opacity: .7; }
+    .hero-h1 { font-size: clamp(3rem, 8vw, 5rem); }
+
+    /* Content sections */
+    .stats { grid-template-columns: repeat(2, 1fr); }
+    #about .about-grid { grid-template-columns: 1fr; }
+    #expertise .card-grid { grid-template-columns: 1fr 1fr; }
+    #press .press-grid { grid-template-columns: 1fr 1fr; }
+    .exp-item { grid-template-columns: 1fr; }
+    .ei-left { border-right: none; border-bottom: 1px solid var(--border); padding-bottom: 12px; }
+    #contact .contact-grid { grid-template-columns: 1fr; }
+  }
+
+  /* Mobile (≤640px) */
+  @media (max-width: 640px) {
+    :root { --gutter: 20px; --gap: 14px; }
+
+    /* Nav: show only CTA */
+    .nav { padding: 0 20px; }
+    .nav-links li { display: none; }
+    .nav-links li:last-child { display: flex; }
+
+    /* Hero: stack text over dimmed photo */
+    #hero {
+      height: 100svh;
+      max-height: 780px;
+      border-radius: 0;
+    }
+    .hero-photo-wrap {
+      width: 100%;
+      right: 0;
+      opacity: .25;
+    }
+    .hero-content {
+      align-items: flex-end;
+      padding-bottom: 56px;
+    }
+    .hero-left { max-width: 100%; }
+    .hero-h1 { font-size: clamp(2.8rem, 11vw, 4.2rem); }
+    .hero-subtitle { margin-top: 14px; margin-bottom: 28px; letter-spacing: .1em; }
+    .hero-meta { flex-wrap: wrap; gap: 8px; }
+
+    /* Stats */
+    .stats { grid-template-columns: repeat(2, 1fr); }
+
+    /* Expertise + Press: single column */
+    #expertise .card-grid { grid-template-columns: 1fr; }
+    #press .press-grid { grid-template-columns: 1fr; }
+
+    /* Section spacing */
+    section { padding-top: 56px !important; padding-bottom: 56px !important; }
+
+    /* Writing list */
+    .wl-item { flex-direction: column; gap: 6px; }
+    .wl-date { min-width: auto; }
+
+    /* Marquee slower on mobile */
+    .marquee-inner { animation-duration: 30s; }
+  }
+
+  /* Very small phones (≤380px) */
+  @media (max-width: 380px) {
+    .hero-h1 { font-size: 2.6rem; }
+    .stats { grid-template-columns: 1fr 1fr; font-size: .85rem; }
+  }
+
+  </style>
+</head>
+<body>
+
+<!-- ── NAV ── -->
+<nav class="nav">
+  <a class="nav-logo" href="#hero">Nassam Estibill</a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#press">Press</a></li>
+    <li><a href="#writing">Writing</a></li>
+    <li><a href="mailto:nassam.estibill@gmail.com" class="nav-cta">Get in touch</a></li>
+  </ul>
+</nav>
+
+<!-- ── HERO ── -->
+<section id="hero">
+  <!-- Wind farm background -->
+  <img class="hero-img"
+    src="https://plus.unsplash.com/premium_photo-1678743133511-94a98aa6af2f?w=1800&q=85&fit=crop&auto=format"
+    alt="Aerial wind farm" />
+  <div class="hero-overlay"></div>
+
+  <div class="hero-content">
+    <!-- LEFT: text -->
+    <div class="hero-left">
+      <h1 class="hero-h1">
+        Nassam Estibill<br>Zalaquett
+      </h1>
+      <p class="hero-subtitle">Metals &amp; Mining — Consultant &amp; Strategist</p>
+      <a href="mailto:nassam.estibill@gmail.com" class="hero-cta">Get in touch →</a>
+      <div class="hero-meta">
+        <span class="hero-pill"><span class="hero-pill-dot"></span>Copper · Lithium</span>
+        <span class="hero-pill">Americas</span>
+        <span class="hero-pill">Wood Mackenzie · New York</span>
+      </div>
+    </div>
+    <!-- Portrait — full height, blends via gradient mask -->
+    <div class="hero-photo-wrap">
+      <img class="hero-photo" src="nassam-color.png" alt="Nassam Estibill" />
+    </div>
+  </div>
+</section>
+
+<!-- ── STATS ── -->
+<div class="stats">
+  <div class="stat-card r">
+    <div class="stat-num">9+</div>
+    <div class="stat-label">Years in Mining</div>
+  </div>
+  <div class="stat-card r">
+    <div class="stat-num">$1.6M</div>
+    <div class="stat-label">Revenue Led '24–'25</div>
+  </div>
+  <div class="stat-card r">
+    <div class="stat-num">25+</div>
+    <div class="stat-label">Client Engagements</div>
+  </div>
+  <div class="stat-card r">
+    <div class="stat-num">4</div>
+    <div class="stat-label">Press Features</div>
+  </div>
+</div>
+
+<!-- ── ABOUT ── -->
+<section id="about">
+  <div class="wrap">
+    <div class="section-header r">
+      <div>
+        <div class="section-label">About</div>
+        <h2 class="section-h">Mining strategist.<br><em>Market analyst. Trusted advisor.</em></h2>
+      </div>
+    </div>
+    <div class="about-grid">
+      <div class="about-card r">
+        <div class="about-body">
+          <p>I am a strategist and consultant with nearly a decade of experience advising mining companies, institutional investors, and governments on the metals defining the energy transition — copper, lithium, aluminum, and critical minerals.</p>
+          <p>As Director of Metals &amp; Mining for the Americas at Wood Mackenzie, I lead commercial growth, complex client engagements, and thought leadership across North and Latin America. My work spans investment decisions, market intelligence, and strategic positioning for the companies and capitals shaping the next economy.</p>
+          <p>Chilean-born, New York-based. Fluent in English and Spanish. Regularly quoted in major Latin American business press on commodity markets and mining strategy.</p>
+        </div>
+      </div>
+      <div>
+        <div class="pull-card r">
+          <p class="pull-text">"The commodities that power the energy transition are not a trend — they are an inevitability."</p>
+          <span class="pull-attr">Nassam Estibill</span>
+        </div>
+        <div class="cred-card r">
+          <div class="cred-row">
+            <span class="cr-year">2022</span>
+            <div>
+              <div class="cr-school">Columbia University · New York</div>
+              <div class="cr-degree">MSc in Technology Management</div>
+            </div>
+          </div>
+          <div class="cred-row">
+            <span class="cr-year">2017</span>
+            <div>
+              <div class="cr-school">Pontifical Catholic University of Chile</div>
+              <div class="cr-degree">Civil Engineering · Diploma in Mining Engineering</div>
+            </div>
+          </div>
+          <div class="cred-row">
+            <span class="cr-year">2019</span>
+            <div>
+              <div class="cr-school">Journal of Mining</div>
+              <div class="cr-degree">Published: "A Mine Planning Tool to Facilitate Planning Under Uncertainty"</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── MARQUEE ── -->
+<div class="marquee-wrap">
+  <div class="marquee-track">
+    <span class="m-item">Copper Markets<span class="m-dot"></span></span>
+    <span class="m-item">Lithium Strategy<span class="m-dot"></span></span>
+    <span class="m-item">Energy Transition<span class="m-dot"></span></span>
+    <span class="m-item">Critical Minerals<span class="m-dot"></span></span>
+    <span class="m-item">Americas Advisory<span class="m-dot"></span></span>
+    <span class="m-item">Investment Strategy<span class="m-dot"></span></span>
+    <span class="m-item">Mining Consulting<span class="m-dot"></span></span>
+    <span class="m-item">Wood Mackenzie<span class="m-dot"></span></span>
+    <span class="m-item">Columbia University<span class="m-dot"></span></span>
+    <span class="m-item">Copper Markets<span class="m-dot"></span></span>
+    <span class="m-item">Lithium Strategy<span class="m-dot"></span></span>
+    <span class="m-item">Energy Transition<span class="m-dot"></span></span>
+    <span class="m-item">Critical Minerals<span class="m-dot"></span></span>
+    <span class="m-item">Americas Advisory<span class="m-dot"></span></span>
+    <span class="m-item">Investment Strategy<span class="m-dot"></span></span>
+    <span class="m-item">Mining Consulting<span class="m-dot"></span></span>
+    <span class="m-item">Wood Mackenzie<span class="m-dot"></span></span>
+    <span class="m-item">Columbia University<span class="m-dot"></span></span>
+  </div>
+</div>
+
+<!-- ── EXPERTISE ── -->
+<section id="expertise">
+  <div class="wrap">
+    <div class="section-header r">
+      <div>
+        <div class="section-label">Focus Areas</div>
+        <h2 class="section-h">Powering decisions<br><em>across the metals value chain.</em></h2>
+      </div>
+    </div>
+    <div class="card-grid">
+      <div class="expertise-card r">
+        <div class="ec-img">
+          <img src="https://images.unsplash.com/photo-1695169152266-d9ac86fab9c5?w=800&q=80&fit=crop&auto=format"
+               alt="Open pit copper mine aerial" />
+        </div>
+        <div class="ec-body">
+          <div class="ec-tag">Copper &amp; Metals</div>
+          <div class="ec-title">Supply forecasting &amp; investment screening</div>
+          <p class="ec-desc">Long-term copper market analysis, supply-demand modeling, and investment thesis development for miners and institutional capital.</p>
+        </div>
+      </div>
+      <div class="expertise-card r">
+        <div class="ec-img">
+          <img src="https://images.unsplash.com/photo-1451847251646-8a6c0dd1510c?w=800&q=80&fit=crop&auto=format"
+               alt="Wind turbines energy transition" />
+        </div>
+        <div class="ec-body">
+          <div class="ec-tag">Energy Transition</div>
+          <div class="ec-title">Critical minerals for a decarbonizing world</div>
+          <p class="ec-desc">Strategic advisory on lithium, cobalt, aluminum, and the metals the energy transition demands — from mine to market.</p>
+        </div>
+      </div>
+      <div class="expertise-card r">
+        <div class="ec-img">
+          <img src="https://images.unsplash.com/photo-1523848309072-c199db53f137?w=800&q=80&fit=crop&auto=format"
+               alt="Mining operations Americas" />
+        </div>
+        <div class="ec-body">
+          <div class="ec-tag">Americas Advisory</div>
+          <div class="ec-title">North &amp; Latin America market strategy</div>
+          <p class="ec-desc">Deep regional expertise spanning Chile, Peru, and North America. Advising on policy risk, investment strategy, and commercial growth.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── EXPERIENCE ── -->
+<section id="experience">
+  <div class="wrap">
+    <div class="section-header r">
+      <div>
+        <div class="section-label">Career</div>
+        <h2 class="section-h">From Santiago<br><em>to New York.</em></h2>
+      </div>
+    </div>
+    <div class="exp-list r">
+      <div class="exp-item">
+        <div class="ei-left">
+          <div class="ei-period">Sep 2025 — Present</div>
+          <div class="ei-co">Wood Mackenzie</div>
+        </div>
+        <div class="ei-right">
+          <div class="ei-role">Director, Metals &amp; Mining — Americas</div>
+          <p class="ei-desc">Co-leading commercial strategy and growth for the Americas practice. Driving offer-led development in copper, lithium, and aluminum. Led strategic partnership with Universidad Adolfo Ibáñez. Regular speaker at major industry forums.</p>
+        </div>
+      </div>
+      <div class="exp-item">
+        <div class="ei-left">
+          <div class="ei-period">Jun 2024 — Aug 2025</div>
+          <div class="ei-co">Wood Mackenzie</div>
+        </div>
+        <div class="ei-right">
+          <div class="ei-role">Principal Consultant, Metals &amp; Mining</div>
+          <p class="ei-desc">Led 11 client engagements in 12 months, generating ~$1.6M in revenue. Originated $1M+ in new mandates across aluminum, lithium, copper, and critical minerals. Mentored 10+ consultants.</p>
+        </div>
+      </div>
+      <div class="exp-item">
+        <div class="ei-left">
+          <div class="ei-period">Sep 2022 — May 2024</div>
+          <div class="ei-co">Wood Mackenzie + Columbia</div>
+        </div>
+        <div class="ei-right">
+          <div class="ei-role">Management Consultant &amp; Associate Instructor</div>
+          <p class="ei-desc">Led 10+ consulting engagements across aluminum strategy, copper investment screening, and due diligence. Simultaneously served as Associate Instructor at Columbia University's MSc Technology Management program, advising 35 students.</p>
+        </div>
+      </div>
+      <div class="exp-item">
+        <div class="ei-left">
+          <div class="ei-period">Oct 2017 — Mar 2022</div>
+          <div class="ei-co">REDCO Mining Consultants</div>
+        </div>
+        <div class="ei-right">
+          <div class="ei-role">Deputy Manager → Project Engineer, Santiago</div>
+          <p class="ei-desc">Led a $3M annual consulting portfolio. Developed 10+ digital twin models for CODELCO, BHP, Teck (QB2), Minera Escondida, and Barrick Gold. Built financial models with NPV from $2M to $350M. Collaborated with McKinsey &amp; Co. and Mitsubishi Corporation.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── PRESS ── -->
+<section id="press">
+  <div class="wrap">
+    <div class="section-header r">
+      <div>
+        <div class="section-label">Press &amp; Media</div>
+        <h2 class="section-h">The latest<br><em>coverage.</em></h2>
+      </div>
+      <a href="#contact" class="see-more">See more on LinkedIn →</a>
+    </div>
+    <div class="press-grid">
+      <div class="press-card r">
+        <div class="pc-img">
+          <img src="https://images.unsplash.com/photo-1695169152266-d9ac86fab9c5?w=800&q=80&fit=crop&auto=format"
+               alt="" />
+        </div>
+        <div class="pc-body">
+          <div class="pc-outlet">La Segunda · May 26, 2026</div>
+          <h3 class="pc-title">"Pacheco prefirió dar un paso al costado para que la alianza no partiera marcada"</h3>
+          <p class="pc-excerpt">Full interview on the SQM–Codelco lithium alliance, Chile's copper production outlook, data center demand for metals, and long-term investment strategy.</p>
+          <div class="pc-footer">
+            <a href="#" class="pc-read">Read more →</a>
+          </div>
+        </div>
+      </div>
+      <div class="press-card r">
+        <div class="pc-img">
+          <img src="https://images.unsplash.com/photo-1451847251646-8a6c0dd1510c?w=800&q=80&fit=crop&auto=format"
+               alt="" />
+        </div>
+        <div class="pc-body">
+          <div class="pc-outlet">La Segunda · June 10, 2025</div>
+          <h3 class="pc-title">"Río Tinto apostó por Chile porque conoce el juego"</h3>
+          <p class="pc-excerpt">On copper price trajectories through 2027, U.S.–China geopolitical dynamics, the lithium oversupply cycle, and Chile's structural cost advantage.</p>
+          <div class="pc-footer">
+            <a href="#" class="pc-read">Read more →</a>
+          </div>
+        </div>
+      </div>
+      <div class="press-card r">
+        <div class="pc-img">
+          <img src="https://images.unsplash.com/photo-1628487749130-2d41acb1802a?w=800&q=80&fit=crop&auto=format"
+               alt="" />
+        </div>
+        <div class="pc-body">
+          <div class="pc-outlet">La Segunda · March 2, 2026</div>
+          <h3 class="pc-title">"Solo será un alivio financiero": Las dificultades de Codelco para aprovechar el nuevo boom del cobre</h3>
+          <p class="pc-excerpt">Commentary on Codelco's structural debt challenges and the potential role of U.S. export credit agencies in Chilean mining finance.</p>
+          <div class="pc-footer">
+            <a href="#" class="pc-read">Read more →</a>
+          </div>
+        </div>
+      </div>
+      <div class="press-card r">
+        <div class="pc-img">
+          <img src="https://images.unsplash.com/photo-1523848309072-c199db53f137?w=800&q=80&fit=crop&auto=format"
+               alt="" />
+        </div>
+        <div class="pc-body">
+          <div class="pc-outlet">El Mercurio · February 27, 2026</div>
+          <h3 class="pc-title">Litio, China y Chile: geopolítica de los minerales críticos</h3>
+          <p class="pc-excerpt">Analysis of China's strategic positioning in the global lithium market and Chile's competitive advantages as a long-term supplier.</p>
+          <div class="pc-footer">
+            <a href="#" class="pc-read">Read more →</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── WRITING ── -->
+<section id="writing">
+  <div class="wrap">
+    <div class="section-header r">
+      <div>
+        <div class="section-label">Writing</div>
+        <h2 class="section-h">Opinion &amp;<br><em>analysis.</em></h2>
+      </div>
+    </div>
+    <div class="writing-list r">
+      <div class="wi-row">
+        <span class="wi-num">01</span>
+        <div>
+          <div class="wi-tag">Academic Publication · 2019</div>
+          <div class="wi-title">A Mine Planning Tool to Facilitate Planning Under Uncertainty</div>
+          <div class="wi-sub">Journal of Mining · Rubio, Jiménez, Estibill, Fuentes</div>
+        </div>
+        <span class="wi-arrow">↗</span>
+      </div>
+      <div class="wi-row" style="opacity:.4; pointer-events:none;">
+        <span class="wi-num" style="opacity:.3;">—</span>
+        <div>
+          <div class="wi-tag">Coming soon</div>
+          <div class="wi-title">Opinion columns on copper, lithium &amp; critical minerals</div>
+          <div class="wi-sub">Follow on LinkedIn for the latest analysis</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── CONTACT ── -->
+<section id="contact">
+  <div class="wrap">
+    <div class="section-header r">
+      <div>
+        <div class="section-label">Contact</div>
+        <h2 class="section-h">Let's talk<br><em>metals.</em></h2>
+      </div>
+    </div>
+    <div class="contact-grid">
+      <div class="contact-card r">
+        <p class="contact-intro">Open to media inquiries, speaking engagements, and strategic conversations around copper, lithium, and the commodities shaping the next economy.</p>
+        <div class="clink-list">
+          <a href="mailto:nassam.estibill@gmail.com" class="clink">
+            <span class="clink-label">Email</span>
+            <span class="clink-val">nassam.estibill@gmail.com</span>
+            <span class="clink-arrow">↗</span>
+          </a>
+          <a href="https://www.linkedin.com/in/nassamestibill/" class="clink" target="_blank" rel="noopener">
+            <span class="clink-label">LinkedIn</span>
+            <span class="clink-val">linkedin.com/in/nassamestibill</span>
+            <span class="clink-arrow">↗</span>
+          </a>
+          <div class="clink" style="cursor:default;">
+            <span class="clink-label">Based in</span>
+            <span class="clink-val">New York, NY</span>
+          </div>
+          <div class="clink" style="cursor:default;">
+            <span class="clink-label">Languages</span>
+            <span class="clink-val">English · Spanish</span>
+          </div>
+        </div>
+      </div>
+      <div class="contact-card r">
+        <p class="topics-label">Open to conversations on</p>
+        <div class="topic-list">
+          <div class="topic-item"><span class="tdot"></span>Copper &amp; lithium market outlook</div>
+          <div class="topic-item"><span class="tdot"></span>Investment strategy in critical minerals</div>
+          <div class="topic-item"><span class="tdot"></span>Mining strategy for the energy transition</div>
+          <div class="topic-item"><span class="tdot"></span>Media interviews &amp; keynote speaking</div>
+          <div class="topic-item"><span class="tdot"></span>Chile &amp; Latin America mining policy</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── FOOTER ── -->
+<footer>
+  <a class="footer-logo" href="#hero">Nassam Estibill</a>
+  <nav class="footer-links">
+    <a href="https://www.linkedin.com/in/nassamestibill/" target="_blank" rel="noopener">LinkedIn</a>
+    <a href="mailto:nassam.estibill@gmail.com">Email</a>
+  </nav>
+  <span class="footer-copy">© 2026</span>
+</footer>
+
+<script>
+  /* ── Scroll reveal ── */
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+    });
+  }, { threshold: 0.07, rootMargin: '0px 0px -28px 0px' });
+  document.querySelectorAll('.r').forEach(el => io.observe(el));
+</script>
+
+</body>
+</html>

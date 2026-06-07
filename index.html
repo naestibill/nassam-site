@@ -750,14 +750,12 @@
   /* ── VIDEO ── */
   #video .video-grid {
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-template-rows: auto auto;
+    grid-template-columns: repeat(3, 1fr);
     gap: var(--gap);
   }
 
-  /* First video spans full width */
   .video-card-featured {
-    grid-column: 1 / -1;
+    grid-column: auto;
   }
 
   .video-card {
@@ -834,15 +832,6 @@
     margin-left: 3px; /* optical centre for triangle */
   }
 
-  .video-card-featured .video-play-btn {
-    width: 80px;
-    height: 80px;
-  }
-
-  .video-card-featured .video-play-btn svg {
-    width: 28px;
-    height: 28px;
-  }
 
   .video-meta {
     padding: 18px 22px 20px;
@@ -1078,8 +1067,7 @@
     #expertise .card-grid { grid-template-columns: 1fr 1fr; }
     #press .press-grid { grid-template-columns: 1fr 1fr; }
     .press-card { aspect-ratio: 3 / 4; }
-    #video .video-grid { grid-template-columns: 1fr; }
-    .video-card-featured { grid-column: 1; }
+    #video .video-grid { grid-template-columns: 1fr 1fr; }
     .exp-item { grid-template-columns: 1fr; }
     .ei-left { border-right: none; border-bottom: 1px solid var(--border); padding-bottom: 12px; }
     #contact .contact-grid { grid-template-columns: 1fr; }
@@ -1121,7 +1109,6 @@
 
     /* Video: single col, all same size */
     #video .video-grid { grid-template-columns: 1fr; }
-    .video-card-featured { grid-column: 1; }
     .video-play-btn { width: 56px !important; height: 56px !important; }
     .video-play-btn svg { width: 20px !important; height: 20px !important; }
     .video-meta { padding: 14px 16px 16px; gap: 10px; }

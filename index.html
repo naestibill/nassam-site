@@ -555,7 +555,7 @@
     line-height: 1.8;
   }
 
-  /* ── PRESS — card grid ── */
+  /* ── PRESS — newspaper card grid ── */
   #press .press-grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
@@ -570,43 +570,67 @@
     display: flex;
     flex-direction: column;
     transition: transform .25s, box-shadow .25s;
+    text-decoration: none;
+    color: inherit;
   }
 
   .press-card:hover {
     transform: translateY(-3px);
-    box-shadow: 0 12px 40px rgba(0,0,0,.08);
+    box-shadow: 0 12px 40px rgba(0,0,0,.09);
   }
 
-  .pc-img {
-    width: 100%;
-    height: 200px;
-    overflow: hidden;
-    flex-shrink: 0;
+  /* Newspaper masthead banner */
+  .pc-masthead {
+    padding: 18px 24px 14px;
+    border-bottom: 2px solid var(--ink);
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 12px;
   }
 
-  .pc-img img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
+  .pc-pub {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.25rem;
+    font-weight: 400;
+    letter-spacing: .04em;
+    color: var(--ink);
+    white-space: nowrap;
+  }
+
+  .pc-date {
+    font-size: .67rem;
+    font-weight: 500;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    color: var(--muted);
+    white-space: nowrap;
+  }
+
+  /* Decorative rule lines under masthead */
+  .pc-rule {
+    display: flex;
+    gap: 2px;
+    padding: 0 24px 0;
+    margin-top: -2px;
+  }
+  .pc-rule span {
     display: block;
-    filter: saturate(.7) brightness(.85);
-    transition: transform .5s, filter .3s;
+    height: 1px;
+    background: var(--ink);
   }
-
-  .press-card:hover .pc-img img {
-    transform: scale(1.04);
-    filter: saturate(.85) brightness(.9);
-  }
+  .pc-rule span:first-child { flex: 3; }
+  .pc-rule span:last-child  { flex: 1; }
 
   .pc-body {
-    padding: 24px 28px;
+    padding: 20px 24px 24px;
     display: flex;
     flex-direction: column;
     flex: 1;
   }
 
-  .pc-outlet {
-    font-size: .65rem;
+  .pc-topic {
+    font-size: .62rem;
     font-weight: 600;
     letter-spacing: .14em;
     text-transform: uppercase;
@@ -616,20 +640,23 @@
 
   .pc-title {
     font-family: 'Cormorant Garamond', serif;
-    font-size: 1.2rem;
+    font-size: 1.18rem;
     font-weight: 400;
     color: var(--ink);
-    line-height: 1.35;
+    line-height: 1.38;
     flex: 1;
-    margin-bottom: 16px;
+    margin-bottom: 14px;
     letter-spacing: -.01em;
   }
 
-  .pc-excerpt {
+  .pc-quote {
     font-size: .8rem;
     color: var(--mid);
-    line-height: 1.7;
+    line-height: 1.65;
+    border-left: 2px solid var(--border);
+    padding-left: 12px;
     margin-bottom: 20px;
+    font-style: italic;
   }
 
   .pc-footer {
@@ -637,21 +664,34 @@
     align-items: center;
     justify-content: space-between;
     border-top: 1px solid var(--border);
-    padding-top: 16px;
+    padding-top: 14px;
+    margin-top: auto;
+  }
+
+  .pc-tag {
+    font-size: .62rem;
+    font-weight: 500;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+    background: var(--page);
+    color: var(--mid);
+    padding: 3px 8px;
+    border-radius: 4px;
+    border: 1px solid var(--border);
   }
 
   .pc-read {
     font-size: .75rem;
     font-weight: 500;
-    color: var(--mid);
+    color: var(--accent);
     text-decoration: none;
     display: flex;
     align-items: center;
-    gap: 6px;
-    transition: color .18s;
+    gap: 5px;
+    transition: gap .18s, color .18s;
   }
 
-  .pc-read:hover { color: var(--ink); }
+  .pc-read:hover { gap: 8px; color: var(--ink); }
 
   /* ── MARQUEE ── */
   .marquee-wrap {
@@ -1195,62 +1235,79 @@
       <a href="#contact" class="see-more">See more on LinkedIn →</a>
     </div>
     <div class="press-grid">
-      <div class="press-card r">
-        <div class="pc-img">
-          <img src="https://images.unsplash.com/photo-1695169152266-d9ac86fab9c5?w=800&q=80&fit=crop&auto=format"
-               alt="" />
+
+      <!-- Card 1 -->
+      <a class="press-card r" href="press-lasegunda-pacheco.pdf" target="_blank" rel="noopener">
+        <div class="pc-masthead">
+          <span class="pc-pub">La Segunda</span>
+          <span class="pc-date">May 26, 2026</span>
         </div>
+        <div class="pc-rule"><span></span><span></span></div>
         <div class="pc-body">
-          <div class="pc-outlet">La Segunda · May 26, 2026</div>
+          <div class="pc-topic">Lithium · Codelco · Chile</div>
           <h3 class="pc-title">"Pacheco prefirió dar un paso al costado para que la alianza no partiera marcada"</h3>
-          <p class="pc-excerpt">Full interview on the SQM–Codelco lithium alliance, Chile's copper production outlook, data center demand for metals, and long-term investment strategy.</p>
+          <p class="pc-quote">"Nadie conoce mejor ese salar que SQM. Chile se asegura continuidad operativa hasta el 2060 en la ubicación de menor costo del mundo."</p>
           <div class="pc-footer">
-            <a href="#" class="pc-read">Read more →</a>
+            <span class="pc-tag">Full Interview</span>
+            <span class="pc-read">Read article →</span>
           </div>
         </div>
-      </div>
-      <div class="press-card r">
-        <div class="pc-img">
-          <img src="https://images.unsplash.com/photo-1451847251646-8a6c0dd1510c?w=800&q=80&fit=crop&auto=format"
-               alt="" />
+      </a>
+
+      <!-- Card 2 -->
+      <a class="press-card r" href="press-lasegunda-riotinto.pdf" target="_blank" rel="noopener">
+        <div class="pc-masthead">
+          <span class="pc-pub">La Segunda</span>
+          <span class="pc-date">Jun 10, 2025</span>
         </div>
+        <div class="pc-rule"><span></span><span></span></div>
         <div class="pc-body">
-          <div class="pc-outlet">La Segunda · June 10, 2025</div>
+          <div class="pc-topic">Copper · Lithium · Geopolitics</div>
           <h3 class="pc-title">"Río Tinto apostó por Chile porque conoce el juego"</h3>
-          <p class="pc-excerpt">On copper price trajectories through 2027, U.S.–China geopolitical dynamics, the lithium oversupply cycle, and Chile's structural cost advantage.</p>
+          <p class="pc-quote">"Para 2035 habrá un déficit de aproximadamente 6,2 millones de toneladas de cobre primario. Chile tiene la ventaja de producir litio desde salmueras."</p>
           <div class="pc-footer">
-            <a href="#" class="pc-read">Read more →</a>
+            <span class="pc-tag">Full Interview</span>
+            <span class="pc-read">Read article →</span>
           </div>
         </div>
-      </div>
-      <div class="press-card r">
-        <div class="pc-img">
-          <img src="https://images.unsplash.com/photo-1628487749130-2d41acb1802a?w=800&q=80&fit=crop&auto=format"
-               alt="" />
+      </a>
+
+      <!-- Card 3 -->
+      <a class="press-card r" href="press-lasegunda-codelco.pdf" target="_blank" rel="noopener">
+        <div class="pc-masthead">
+          <span class="pc-pub">La Segunda</span>
+          <span class="pc-date">Mar 2, 2026</span>
         </div>
+        <div class="pc-rule"><span></span><span></span></div>
         <div class="pc-body">
-          <div class="pc-outlet">La Segunda · March 2, 2026</div>
+          <div class="pc-topic">Copper · Codelco · Finance</div>
           <h3 class="pc-title">"Solo será un alivio financiero": Las dificultades de Codelco para aprovechar el nuevo boom del cobre</h3>
-          <p class="pc-excerpt">Commentary on Codelco's structural debt challenges and the potential role of U.S. export credit agencies in Chilean mining finance.</p>
+          <p class="pc-quote">"No sería extraño ver la eventual participación de agencias norteamericanas considerando la mayor afinidad del gobierno entrante con Estados Unidos."</p>
           <div class="pc-footer">
-            <a href="#" class="pc-read">Read more →</a>
+            <span class="pc-tag">Featured Expert</span>
+            <span class="pc-read">Read article →</span>
           </div>
         </div>
-      </div>
-      <div class="press-card r">
-        <div class="pc-img">
-          <img src="https://images.unsplash.com/photo-1523848309072-c199db53f137?w=800&q=80&fit=crop&auto=format"
-               alt="" />
+      </a>
+
+      <!-- Card 4 -->
+      <a class="press-card r" href="press-elmercurio-litio.pdf" target="_blank" rel="noopener">
+        <div class="pc-masthead">
+          <span class="pc-pub">El Mercurio</span>
+          <span class="pc-date">Feb 27, 2026</span>
         </div>
+        <div class="pc-rule"><span></span><span></span></div>
         <div class="pc-body">
-          <div class="pc-outlet">El Mercurio · February 27, 2026</div>
+          <div class="pc-topic">Lithium · China · Critical Minerals</div>
           <h3 class="pc-title">Litio, China y Chile: geopolítica de los minerales críticos</h3>
-          <p class="pc-excerpt">Analysis of China's strategic positioning in the global lithium market and Chile's competitive advantages as a long-term supplier.</p>
+          <p class="pc-quote">Analysis of China's strategic positioning in the global lithium market and Chile's structural competitive advantages as a long-term supplier.</p>
           <div class="pc-footer">
-            <a href="#" class="pc-read">Read more →</a>
+            <span class="pc-tag">Expert Commentary</span>
+            <span class="pc-read">Read article →</span>
           </div>
         </div>
-      </div>
+      </a>
+
     </div>
   </div>
 </section>

@@ -599,32 +599,30 @@
     gap: var(--gap);
   }
 
+  /* Full-bleed newspaper card — image IS the card */
   .press-card {
-    background: var(--white);
-    border: 1px solid var(--border);
     border-radius: var(--r);
     overflow: hidden;
-    display: flex;
-    flex-direction: column;
-    transition: transform .28s, box-shadow .28s;
+    display: block;
+    position: relative;
     text-decoration: none;
     color: inherit;
     cursor: pointer;
+    aspect-ratio: 3 / 4;
+    box-shadow: 0 2px 12px rgba(0,0,0,.08);
+    transition: transform .3s, box-shadow .3s;
   }
 
   .press-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 20px 56px rgba(0,0,0,.12);
+    transform: translateY(-6px);
+    box-shadow: 0 24px 64px rgba(0,0,0,.18);
   }
 
-  /* Newspaper page image */
+  /* Full-bleed newspaper page image */
   .pc-page {
-    width: 100%;
-    height: 280px;
+    position: absolute;
+    inset: 0;
     overflow: hidden;
-    position: relative;
-    background: #f0ede8;
-    flex-shrink: 0;
   }
 
   .pc-page img {
@@ -633,54 +631,43 @@
     object-fit: cover;
     object-position: top center;
     display: block;
-    transition: transform .5s ease;
+    transition: transform .55s ease;
   }
 
   .press-card:hover .pc-page img {
-    transform: scale(1.04);
+    transform: scale(1.03);
   }
 
-  /* Gradient fade at bottom of page image into the card body */
-  .pc-page::after {
-    content: '';
+  /* Dark overlay at bottom for legibility */
+  .pc-overlay {
     position: absolute;
-    bottom: 0; left: 0; right: 0;
-    height: 60px;
-    background: linear-gradient(to bottom, transparent, #fff);
+    inset: 0;
+    background: linear-gradient(
+      to bottom,
+      transparent 40%,
+      rgba(10,10,9,.55) 70%,
+      rgba(10,10,9,.88) 100%
+    );
     pointer-events: none;
   }
 
-  /* Logo + date strip */
-  .pc-header {
-    padding: 14px 20px 12px;
-    border-bottom: 1px solid var(--border);
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 12px;
-  }
-
-  .pc-logo {
-    height: 20px;
-    width: auto;
-    object-fit: contain;
-  }
-
-  .pc-date {
-    font-size: .62rem;
-    font-weight: 500;
-    letter-spacing: .1em;
-    text-transform: uppercase;
-    color: var(--muted);
-    white-space: nowrap;
-  }
-
-  /* Body */
+  /* Content pinned to bottom */
   .pc-body {
-    padding: 18px 20px 20px;
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    padding: 20px 22px 22px;
     display: flex;
     flex-direction: column;
-    flex: 1;
+    gap: 10px;
+  }
+
+  /* Logo — white version via CSS filter */
+  .pc-logo {
+    height: 18px;
+    width: auto;
+    object-fit: contain;
+    filter: brightness(0) invert(1);
+    opacity: .9;
   }
 
   .pc-topic {
@@ -688,17 +675,15 @@
     font-weight: 600;
     letter-spacing: .14em;
     text-transform: uppercase;
-    color: var(--muted);
-    margin-bottom: 8px;
+    color: rgba(255,255,255,.55);
   }
 
   .pc-title {
     font-family: 'Cormorant Garamond', serif;
-    font-size: 1.12rem;
+    font-size: 1.05rem;
     font-weight: 400;
-    color: var(--ink);
+    color: #fff;
     line-height: 1.38;
-    flex: 1;
     letter-spacing: -.01em;
   }
 
@@ -706,34 +691,29 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    border-top: 1px solid var(--border);
-    padding-top: 12px;
-    margin-top: 14px;
+    padding-top: 10px;
+    border-top: 1px solid rgba(255,255,255,.18);
   }
 
-  .pc-tag {
+  .pc-date {
     font-size: .6rem;
     font-weight: 500;
-    letter-spacing: .08em;
+    letter-spacing: .1em;
     text-transform: uppercase;
-    background: var(--page);
-    color: var(--mid);
-    padding: 3px 8px;
-    border-radius: 4px;
-    border: 1px solid var(--border);
+    color: rgba(255,255,255,.5);
   }
 
   .pc-read {
-    font-size: .73rem;
+    font-size: .72rem;
     font-weight: 500;
-    color: var(--accent);
+    color: rgba(255,255,255,.75);
     display: flex;
     align-items: center;
     gap: 5px;
-    transition: gap .18s;
+    transition: gap .18s, color .18s;
   }
 
-  .press-card:hover .pc-read { gap: 8px; }
+  .press-card:hover .pc-read { gap: 8px; color: #fff; }
 
   /* ── MARQUEE ── */
   .marquee-wrap {
@@ -960,7 +940,8 @@
     #about .about-grid { grid-template-columns: 1fr; }
     #expertise .card-grid { grid-template-columns: 1fr 1fr; }
     #press .press-grid { grid-template-columns: 1fr; }
-    .press-logos { gap: 24px; }
+    .press-logos { gap: 20px; padding: 20px 24px; }
+    .press-card { aspect-ratio: 4 / 3; }
     .exp-item { grid-template-columns: 1fr; }
     .ei-left { border-right: none; border-bottom: 1px solid var(--border); padding-bottom: 12px; }
     #contact .contact-grid { grid-template-columns: 1fr; }
@@ -1287,77 +1268,61 @@
     <div class="press-grid">
 
       <!-- Card 1 -->
-      <a class="press-card r" href="press-lasegunda-pacheco.pdf" target="_blank" rel="noopener">
-        <div class="pc-page">
-          <img src="press-thumb-pacheco.jpg" alt="La Segunda – May 26, 2026" />
-        </div>
-        <div class="pc-header">
-          <img src="logo-lasegunda.png" alt="La Segunda" class="pc-logo" />
-          <span class="pc-date">May 26, 2026</span>
-        </div>
+      <a class="press-card" href="press-lasegunda-pacheco.pdf" target="_blank" rel="noopener">
+        <div class="pc-page"><img src="press-thumb-pacheco.jpg" alt="La Segunda – May 26, 2026" /></div>
+        <div class="pc-overlay"></div>
         <div class="pc-body">
+          <img src="logo-lasegunda.png" alt="La Segunda" class="pc-logo" />
           <div class="pc-topic">Lithium · Codelco · Chile</div>
           <h3 class="pc-title">"Pacheco prefirió dar un paso al costado para que la alianza no partiera marcada"</h3>
           <div class="pc-footer">
-            <span class="pc-tag">Full Interview</span>
-            <span class="pc-read">Read full article →</span>
+            <span class="pc-date">May 26, 2026</span>
+            <span class="pc-read">Read article →</span>
           </div>
         </div>
       </a>
 
       <!-- Card 2 -->
-      <a class="press-card r" href="press-lasegunda-codelco.pdf" target="_blank" rel="noopener">
-        <div class="pc-page">
-          <img src="press-thumb-codelco.jpg" alt="La Segunda – Mar 2, 2026" />
-        </div>
-        <div class="pc-header">
-          <img src="logo-lasegunda.png" alt="La Segunda" class="pc-logo" />
-          <span class="pc-date">Mar 2, 2026</span>
-        </div>
+      <a class="press-card" href="press-lasegunda-codelco.pdf" target="_blank" rel="noopener">
+        <div class="pc-page"><img src="press-thumb-codelco.jpg" alt="La Segunda – Mar 2, 2026" /></div>
+        <div class="pc-overlay"></div>
         <div class="pc-body">
+          <img src="logo-lasegunda.png" alt="La Segunda" class="pc-logo" />
           <div class="pc-topic">Copper · Codelco · Finance</div>
           <h3 class="pc-title">"Solo será un alivio financiero": Las dificultades de Codelco para aprovechar el nuevo boom del cobre</h3>
           <div class="pc-footer">
-            <span class="pc-tag">Featured Expert</span>
-            <span class="pc-read">Read full article →</span>
+            <span class="pc-date">Mar 2, 2026</span>
+            <span class="pc-read">Read article →</span>
           </div>
         </div>
       </a>
 
       <!-- Card 3 -->
-      <a class="press-card r" href="press-elmercurio-litio.pdf" target="_blank" rel="noopener">
-        <div class="pc-page">
-          <img src="press-thumb-elmercurio.jpg" alt="El Mercurio – Feb 27, 2026" />
-        </div>
-        <div class="pc-header">
-          <img src="logo-elmercurio.svg" alt="El Mercurio" class="pc-logo" />
-          <span class="pc-date">Feb 27, 2026</span>
-        </div>
+      <a class="press-card" href="press-elmercurio-litio.pdf" target="_blank" rel="noopener">
+        <div class="pc-page"><img src="press-thumb-elmercurio.jpg" alt="El Mercurio – Feb 27, 2026" /></div>
+        <div class="pc-overlay"></div>
         <div class="pc-body">
+          <img src="logo-elmercurio.svg" alt="El Mercurio" class="pc-logo" />
           <div class="pc-topic">Lithium · China · Critical Minerals</div>
           <h3 class="pc-title">Litio, China y Chile: geopolítica de los minerales críticos</h3>
           <div class="pc-footer">
-            <span class="pc-tag">Expert Commentary</span>
-            <span class="pc-read">Read full article →</span>
+            <span class="pc-date">Feb 27, 2026</span>
+            <span class="pc-read">Read article →</span>
           </div>
         </div>
       </a>
 
       <!-- Card 4 -->
-      <a class="press-card r" href="press-lasegunda-riotinto.pdf" target="_blank" rel="noopener">
-        <div class="pc-page">
-          <img src="press-thumb-riotinto.jpg" alt="La Segunda – Jun 10, 2025" />
-        </div>
-        <div class="pc-header">
-          <img src="logo-lasegunda.png" alt="La Segunda" class="pc-logo" />
-          <span class="pc-date">Jun 10, 2025</span>
-        </div>
+      <a class="press-card" href="press-lasegunda-riotinto.pdf" target="_blank" rel="noopener">
+        <div class="pc-page"><img src="press-thumb-riotinto.jpg" alt="La Segunda – Jun 10, 2025" /></div>
+        <div class="pc-overlay"></div>
         <div class="pc-body">
+          <img src="logo-lasegunda.png" alt="La Segunda" class="pc-logo" />
           <div class="pc-topic">Copper · Lithium · Geopolitics</div>
           <h3 class="pc-title">"Río Tinto apostó por Chile porque conoce el juego"</h3>
           <div class="pc-footer">
-            <span class="pc-tag">Full Interview</span>
-            <span class="pc-read">Read full article →</span>
+            <span class="pc-date">Jun 10, 2025</span>
+            <span class="pc-read">Read article →</span>
           </div>
         </div>
       </a>

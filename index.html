@@ -665,6 +665,7 @@
   }
 
   .press-logo-img:hover { opacity: 1; filter: grayscale(0); }
+  .press-logo-exante { height: 32px; }
 
   /* Card grid — 2 col desktop */
   #press .press-grid {
@@ -743,6 +744,23 @@
     filter: brightness(0) invert(1);
     opacity: .9;
   }
+
+  /* Ex-Ante card: dark background with centered logo instead of newspaper image */
+  .pc-page-exante {
+    background: #0d1b2a;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .pc-exante-logo {
+    width: 60%;
+    max-width: 180px;
+    object-fit: contain;
+    filter: brightness(0) invert(1);
+    opacity: .85;
+  }
+  /* Keep Ex-Ante logo white in the card body without extra invert */
+  .pc-logo-white { filter: brightness(0) invert(1); }
 
   .pc-topic {
     font-size: .62rem;
@@ -943,7 +961,6 @@
   }
 
   .video-card-featured .video-meta { padding: 20px 28px 24px; }
-  .video-card-featured .video-title { font-size: 1.05rem; }
 
   /* ── WRITING ── */
   #writing .writing-list {
@@ -1518,6 +1535,7 @@
       <span class="press-logos-label">As seen in</span>
       <img src="logo-lasegunda.png" alt="La Segunda" class="press-logo-img" />
       <img src="logo-elmercurio.svg" alt="El Mercurio" class="press-logo-img" />
+      <img src="logo-exante.png" alt="Ex-Ante" class="press-logo-img press-logo-exante" />
     </div>
 
     <div class="press-grid">
@@ -1562,6 +1580,23 @@
           <h3 class="pc-title">Litio, China y Chile: geopolítica de los minerales críticos</h3>
           <div class="pc-footer">
             <span class="pc-date">Feb 27, 2026</span>
+            <span class="pc-read">Read article →</span>
+          </div>
+        </div>
+      </a>
+
+      <!-- Card: Ex-Ante opinion column -->
+      <a class="press-card press-card-exante" href="https://www.ex-ante.cl/codelco-nuestro-orgullo-incomprendido-por-nassam-estibill/" target="_blank" rel="noopener">
+        <div class="pc-page pc-page-exante">
+          <img src="logo-exante.png" alt="Ex-Ante" class="pc-exante-logo" />
+        </div>
+        <div class="pc-overlay"></div>
+        <div class="pc-body">
+          <img src="logo-exante.png" alt="Ex-Ante" class="pc-logo pc-logo-white" />
+          <div class="pc-topic">Codelco · Copper · Chile</div>
+          <h3 class="pc-title">Codelco: Nuestro orgullo incomprendido</h3>
+          <div class="pc-footer">
+            <span class="pc-date">2025</span>
             <span class="pc-read">Read article →</span>
           </div>
         </div>
@@ -1649,7 +1684,7 @@
           <span class="video-num">03</span>
           <div class="video-info">
             <div class="video-tag">Congreso CIIT Perú 2021</div>
-            <div class="video-title">Presentación · Minería &amp; Metales</div>
+            <div class="video-title">Presentation on Integrated Planning and the Use of Digital Tools for Efficient Operational Planning</div>
           </div>
         </div>
       </div>

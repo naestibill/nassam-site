@@ -92,6 +92,80 @@
 
   .nav-cta:hover { background: #333 !important; }
 
+  /* Hamburger — hidden on desktop */
+  .nav-burger {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px;
+    width: 36px;
+    height: 36px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 4px;
+  }
+  .nav-burger span {
+    display: block;
+    height: 2px;
+    width: 100%;
+    background: var(--ink);
+    border-radius: 2px;
+    transition: transform .25s, opacity .25s;
+  }
+  .nav-burger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+  .nav-burger.open span:nth-child(2) { opacity: 0; }
+  .nav-burger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+  /* Mobile drawer */
+  .mob-drawer {
+    display: none;
+    position: fixed;
+    inset: 60px 0 0 0;
+    z-index: 299;
+    background: var(--page);
+    flex-direction: column;
+    padding: 32px var(--gutter) 40px;
+    overflow-y: auto;
+    transform: translateX(100%);
+    transition: transform .3s cubic-bezier(.4,0,.2,1);
+  }
+  .mob-drawer.open { transform: translateX(0); }
+  .mob-links {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    flex: 1;
+  }
+  .mob-link {
+    font-size: 1.5rem;
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 500;
+    color: var(--ink);
+    text-decoration: none;
+    padding: 14px 0;
+    border-bottom: 1px solid var(--border);
+    letter-spacing: .02em;
+    transition: color .18s;
+  }
+  .mob-link:last-child { border-bottom: none; }
+  .mob-link:hover { color: var(--accent); }
+  .mob-cta {
+    margin-top: 24px;
+    display: inline-block;
+    background: var(--ink);
+    color: #fff !important;
+    font-family: 'Inter', sans-serif;
+    font-size: .85rem;
+    font-weight: 500;
+    letter-spacing: .06em;
+    text-transform: uppercase;
+    padding: 14px 28px;
+    border-radius: var(--r);
+    text-align: center;
+    border-bottom: none !important;
+  }
+
   /* ── HERO ── */
   #hero {
     margin-top: 60px;
@@ -1077,10 +1151,11 @@
   @media (max-width: 640px) {
     :root { --gutter: 18px; --gap: 12px; }
 
-    /* Nav: logo + CTA only */
+    /* Nav: logo + burger only */
     .nav { padding: 0 18px; }
-    .nav-links li { display: none; }
-    .nav-links li:last-child { display: flex; }
+    .nav-links { display: none; }
+    .nav-burger { display: flex; }
+    .mob-drawer { display: flex; }
 
     /* Hero */
     #hero { height: 100svh; max-height: 780px; border-radius: 0; }
@@ -1177,7 +1252,22 @@
     <span class="lang-sep">/</span>
     <span class="lang-opt" id="langES">ES</span>
   </button>
+  <button class="nav-burger" id="navBurger" aria-label="Open menu" aria-expanded="false">
+    <span></span><span></span><span></span>
+  </button>
 </nav>
+
+<!-- Mobile drawer -->
+<div class="mob-drawer" id="mobDrawer" aria-hidden="true">
+  <nav class="mob-links">
+    <a href="#about"      data-i18n="nav.about"      class="mob-link">About</a>
+    <a href="#experience" data-i18n="nav.experience"  class="mob-link">Experience</a>
+    <a href="#press"      data-i18n="nav.press"       class="mob-link">Press</a>
+    <a href="#video"      data-i18n="nav.video"       class="mob-link">Video</a>
+    <a href="#writing"    data-i18n="nav.writing"     class="mob-link">Writing</a>
+    <a href="mailto:naestibill@gmail.com" class="mob-link mob-cta" data-i18n="nav.cta">Get in touch</a>
+  </nav>
+</div>
 
 <!-- ── HERO ── -->
 <section id="hero">
@@ -1808,6 +1898,21 @@
 
   // Apply saved language on load
   applyLang(currentLang);
+
+  // Hamburger menu
+  const burger = document.getElementById('navBurger');
+  const drawer = document.getElementById('mobDrawer');
+  function toggleMenu(open) {
+    burger.classList.toggle('open', open);
+    burger.setAttribute('aria-expanded', open);
+    drawer.classList.toggle('open', open);
+    drawer.setAttribute('aria-hidden', !open);
+    document.body.style.overflow = open ? 'hidden' : '';
+  }
+  burger.addEventListener('click', () => toggleMenu(!drawer.classList.contains('open')));
+  drawer.querySelectorAll('.mob-link').forEach(a => {
+    a.addEventListener('click', () => toggleMenu(false));
+  });
 </script>
 
 </body>
